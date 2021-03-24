@@ -1,0 +1,7 @@
+css-cup-remastered-frontend/node_modules/
+css-cup-remastered-frontend/.idea/
+css-cup-remastered-backend/.idea/
+/.idea/
+css-cup-remastered-backend/*.iml
+css-cup-remastered-frontend/*.iml
+css-cup-remastered-frontend/.editorconfig
