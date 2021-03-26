@@ -1,0 +1,50 @@
+<main class="content">
+  <div class="search-bar">
+
+    <input type="text" class="search-bar">
+    <button type="button" class="search-button">Suchen</button>
+  </div>
+  <div class="participant-table">
+    <div class="table-header">
+      <div class="table-col-firstname coloring">
+        <h3>Vorname</h3>
+      </div>
+      <div class="table-col-lastname coloring">
+        <h3>Nachname</h3>
+      </div>
+      <div class="table-col-function coloring">
+        <h3>Funktion</h3>
+      </div>
+      <div class="table-col-role coloring">
+        <h3>Team</h3>
+      </div>
+      <div class="table-col-team coloring">
+        <h3>Rolle</h3>
+      </div>
+      <div class="table-col-toolbar coloring">
+        <h3>Toolbar</h3>
+      </div>
+    </div>
+    <div class="table-body" *ngFor="let t of test">
+      <div class="table-col-firstname boxing">
+        Philip
+      </div>
+      <div class="table-col-lastname boxing">
+        Baumann
+      </div>
+      <div class="table-col-function boxing">
+        *IEL
+      </div>
+      <div class="table-col-role boxing">
+        Captain
+      </div>
+      <div class="table-col-team boxing">
+        Tottenham
+      </div>
+      <div class="table-col-toolbar boxing">
+        <i class="far fa-edit" (click)="edit()"></i>
+        <i class="far fa-trash-alt" (click)="delete()"></i>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UebersichtComponent} from "./uebersicht/uebersicht.component";
+import {AdministrationComponent} from "./administration/administration.component";
 
 const routes: Routes = [
   // {
@@ -8,10 +9,10 @@ const routes: Routes = [
   //   pathMatch: 'full',
   //   component: null,
   // },
-  // {
-  //   path: 'administration',
-  //   component: null
-  // },
+  {
+    path: 'administration',
+    component: AdministrationComponent
+  },
   // {
   //   path: 'profile',
   //   component: null
