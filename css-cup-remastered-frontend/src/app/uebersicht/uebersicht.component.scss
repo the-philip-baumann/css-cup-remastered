@@ -1,0 +1,77 @@
+@media screen and (min-width: 700px) {
+
+}
+
+@media screen and (min-width: 1400px) {
+  .content {
+    width: 80%;
+    height: 1000px;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .team {
+    width: 30%;
+  }
+
+  .team-header {
+    text-align: center;
+    background-color: deepskyblue;
+    border: 1px black solid;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+
+  .team:nth-child(3n + 2) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .team-body {
+    background-color: #fcfcfc;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    font-size: 20px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .team-body:nth-child(2n + 1) {
+    background-color: #abdaf5;
+  }
+
+  .team-join {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    background-color: deepskyblue;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    margin-bottom: 10%;
+    font-size: 24px;
+    color: white;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+
+  .team-title {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+    font-size: 24px;
+  }
+
+  .team-body:first-child {
+    border-top: 1px solid black;
+  }
+}
+
+@media screen and (min-width: 2000px){
+
+}
