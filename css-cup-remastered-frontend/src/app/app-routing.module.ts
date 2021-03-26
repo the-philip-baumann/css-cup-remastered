@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {UebersichtComponent} from "./uebersicht/uebersicht.component";
 
 const routes: Routes = [
   // {
@@ -15,10 +16,11 @@ const routes: Routes = [
   //   path: 'profile',
   //   component: null
   // },
-  // {
-  //   path: 'uebersicht',
-  //   component: null
-  // },
+  {
+    path: 'uebersicht',
+    component: UebersichtComponent,
+
+  },
   // {
   //   path: 'begegnungen',
   //   component: null,

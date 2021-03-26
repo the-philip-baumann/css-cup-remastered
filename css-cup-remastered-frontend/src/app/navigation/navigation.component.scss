@@ -1,0 +1,61 @@
+.nav {
+  width: 80%;
+
+  background-color: red;
+}
+
+
+@media screen and (min-width: 720px) {
+  .nav {
+    background-color: green;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .nav {
+    background-color: #f2eeed;
+    overflow: hidden;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    margin: 50px 10% 50px 10%;
+  }
+
+  .flexbox {
+    display: flex;
+  }
+
+  .menu-item {
+    color: #e6e7e8;
+    text-align: center;
+    display: block;
+  }
+
+  .menu-item:hover {
+    background-color: #e6e7e8;
+  }
+
+  .menu-tag {
+    margin: 40px 40px;
+    font-size: 32px;
+    color: deepskyblue;
+  }
+
+  .menu-tag a {
+    text-decoration: none;
+    color: deepskyblue;
+  }
+
+  .logo-size {
+    height: 80px;
+    width: 80px;
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .nav {
+    background-color: aqua;
+  }
+
+
+}
