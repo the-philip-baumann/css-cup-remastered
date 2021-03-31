@@ -1,0 +1,74 @@
+$login-blue: rgb(46, 129, 252);
+
+.content {
+  width: 80%;
+  margin-left: 10%;
+  font-family: Geneva, serif;
+  display: inline-flex;
+}
+
+.register {
+  width: 50%;
+  color: white;
+}
+
+.login {
+  width: 50%;
+  background-color: #f2f1ed;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.introduction {
+  background-color: $login-blue;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  padding: 25% 10% 25% 10%;
+}
+
+.btn-register {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.welcome-text {
+  margin: 25px 25px 50px 0px;
+}
+
+h2.register-title {
+  font-size: 40px;
+  color: white;
+}
+
+h2.login-title {
+  font-size: 40px;
+  color: $login-blue;
+}
+
+.credentials {
+  padding: 25% 10% 25% 10%;
+  display: inline-block;
+}
+
+.input {
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.coloring-login {
+  background-color: $login-blue;
+  color: white;
+}
+
+.coloring-register {
+  color: $login-blue;
+}
