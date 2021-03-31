@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UebersichtComponent} from "./uebersicht/uebersicht.component";
 import {AdministrationComponent} from "./administration/administration.component";
+import {AuthComponent} from "./auth/auth.component";
 
 const routes: Routes = [
   // {
@@ -25,8 +26,11 @@ const routes: Routes = [
   // {
   //   path: 'begegnungen',
   //   component: null,
-  // }
-
+  // },
+  {
+    path: 'auth/login',
+    component: AuthComponent
+  },
 ];
 
 @NgModule({
