@@ -1,0 +1,68 @@
+version: "3.9"
+services:
+  css-cup-remastered-frontend:
+    container_name: "css-cup-remastered-frontend"
+    build: ./../css-cup-remastered-frontend/
+    ports:
+      - 9000:80
+
+  css-cup-remastered-backend:
+    container_name: css-cup-remastered-backend
+    build: ./../css-cup-remastered-backend/
+    ports:
+      - 8080:8080
+    networks:
+      - css-cup-remastered-network
+
+  css-cup-remastered-postgres:
+    container_name:
+      postgres
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_PASSWORD=db-postgres
+      - POSTGRES_USER=db-postgres
+      - POSTGRES_DB=postgres
+    networks:
+      - css-cup-remastered-network
+    volumes:
+      - css-cup-remastered-postgres:/var/lib/postgresql/data
+
+
+  css-cup-remastered-pgadmin:
+    container_name:
+      css-cup-remastered-pgadmin
+    image: dpage/pgadmin4:5.1
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=philip_baumann@sluz.ch
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - 4000:80
+    volumes:
+      - css-cup-remastered-pgadmin:/var/lib/pgadmin
+    networks:
+      - css-cup-remastered-network
+
+  css-cup-remastered-redis:
+    container_name: css-cup-remastered-redis
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - css-cup-remastered-network
+    volumes:
+      - css-cup-remastered-redis:/data
+
+volumes:
+  css-cup-remastered-pgadmin:
+  css-cup-remastered-postgres:
+  css-cup-remastered-redis:
+
+networks:
+  css-cup-remastered-network:
+    name: css-cup-remastered-network
