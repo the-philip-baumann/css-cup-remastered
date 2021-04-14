@@ -65,4 +65,5 @@ volumes:
 
 networks:
   css-cup-remastered-network:
+    driver: bridge
     name: css-cup-remastered-network
