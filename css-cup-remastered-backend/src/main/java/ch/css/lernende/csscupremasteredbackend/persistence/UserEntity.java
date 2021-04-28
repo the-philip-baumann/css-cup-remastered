@@ -15,7 +15,7 @@ public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false, columnDefinition = "serial")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "firstname")
@@ -38,6 +38,9 @@ public class UserEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Discipline discipline;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private TeamEntity team;
 
     public UserEntity (
             String firstname,

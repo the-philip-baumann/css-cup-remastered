@@ -1,4 +1,4 @@
-package ch.css.lernende.csscupremasteredbackend.repository;
+package ch.css.lernende.csscupremasteredbackend.repository.repo.user;
 
 import ch.css.lernende.csscupremasteredbackend.persistence.UserEntity;
 import org.springframework.data.repository.CrudRepository;
