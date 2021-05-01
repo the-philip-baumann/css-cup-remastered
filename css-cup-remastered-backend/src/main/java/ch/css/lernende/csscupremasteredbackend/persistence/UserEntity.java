@@ -18,18 +18,19 @@ public class UserEntity implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstname;
 
-    @Column(name = "lastname")
+    @Column(name = "lastname", nullable = false)
     private String lastname;
 
-    @Column(name = "function")
+    @Column(name = "function", nullable = false)
     private String function;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
+    //TODO: remove nullable
     @Column(name = "password")
     private byte[] password;
 

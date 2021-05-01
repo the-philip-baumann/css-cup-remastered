@@ -31,8 +31,9 @@ CREATE TABLE team
     id         SERIAL      NOT NULL PRIMARY KEY,
     name       VARCHAR(50) NOT NULL,
     discipline INT         NOT NULL,
-    FOREIGN KEY (id) REFERENCES discipline (id)
-
+    captain    INT         NOT NULL,
+    FOREIGN KEY (discipline) REFERENCES discipline (id),
+    FOREIGN KEY (captain) REFERENCES player(id)
 );
 
 
