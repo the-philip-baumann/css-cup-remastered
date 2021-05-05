@@ -3,7 +3,7 @@ package ch.css.lernende.csscupremasteredbackend.service;
 import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.model.UserModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.user.PlayerRepository;
+import ch.css.lernende.csscupremasteredbackend.repository.user.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package ch.css.lernende.csscupremasteredbackend.repository.repo.team;
+package ch.css.lernende.csscupremasteredbackend.repository.team;
 
 import ch.css.lernende.csscupremasteredbackend.model.Discipline;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;

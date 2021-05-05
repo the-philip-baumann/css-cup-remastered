@@ -1,7 +1,6 @@
-package ch.css.lernende.csscupremasteredbackend.repository.repo.team;
+package ch.css.lernende.csscupremasteredbackend.repository.team;
 
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.team.CustomTeamRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

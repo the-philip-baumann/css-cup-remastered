@@ -9,7 +9,7 @@ import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamRepository;
+import ch.css.lernende.csscupremasteredbackend.repository.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
