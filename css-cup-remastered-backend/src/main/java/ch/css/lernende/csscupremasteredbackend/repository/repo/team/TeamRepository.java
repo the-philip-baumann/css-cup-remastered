@@ -14,5 +14,4 @@ public interface TeamRepository extends CrudRepository<TeamEntity, Long>, Custom
 
     List<TeamEntity> findAll();
 
-    void deleteById();
 }

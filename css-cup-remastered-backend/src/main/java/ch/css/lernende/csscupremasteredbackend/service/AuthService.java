@@ -2,8 +2,8 @@ package ch.css.lernende.csscupremasteredbackend.service;
 
 import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.model.UserModel;
-import ch.css.lernende.csscupremasteredbackend.persistence.UserEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.user.UserRepository;
+import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.user.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,33 +13,33 @@ import java.security.spec.InvalidKeySpecException;
 @Service
 public class AuthService {
 
-    private UserRepository userRepository;
+    private PlayerRepository playerRepository;
 
     @Autowired
-    public AuthService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthService(PlayerRepository playerRepository) {
+        this.playerRepository = playerRepository;
     }
 
     public AuthService() {
     }
 
     public String register(UserModel userModel) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setFirstname(userModel.getFirstname());
-        userEntity.setLastname(userModel.getLastname());
-        userEntity.setFunction(userModel.getLastname());
-        userEntity.setEmail(userModel.getEmail());
-        userEntity.setPassword(encryptPassword(userModel.getPassword()));
-        userEntity.setRole(userModel.getRole());
-        userEntity.setDiscipline(userModel.getDiscipline());
-        UserEntity savedEntity = this.userRepository.save(userEntity);
+        PlayerEntity playerEntity = new PlayerEntity();
+        playerEntity.setFirstname(userModel.getFirstname());
+        playerEntity.setLastname(userModel.getLastname());
+        playerEntity.setFunction(userModel.getLastname());
+        playerEntity.setEmail(userModel.getEmail());
+        playerEntity.setPassword(encryptPassword(userModel.getPassword()));
+        playerEntity.setRole(userModel.getRole());
+        playerEntity.setDiscipline(userModel.getDiscipline());
+        PlayerEntity savedEntity = this.playerRepository.save(playerEntity);
 
         return generateAccessToken(savedEntity.getId(), savedEntity.getEmail(), savedEntity.getRole());
     }
 
     public String login(String email, String password) {
-        UserEntity userEntity = this.userRepository.findByEmail(email);
-        return generateAccessToken(userEntity.getId(), userEntity.getEmail(), userEntity.getRole());
+        PlayerEntity playerEntity = this.playerRepository.findByEmail(email);
+        return generateAccessToken(playerEntity.getId(), playerEntity.getEmail(), playerEntity.getRole());
     }
 
     private boolean validatePassword(String password) {

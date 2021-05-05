@@ -2,7 +2,7 @@ package ch.css.lernende.csscupremasteredbackend.repository.repo.team;
 
 import ch.css.lernende.csscupremasteredbackend.model.Discipline;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
-import ch.css.lernende.csscupremasteredbackend.persistence.UserEntity;
+import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 
 import lombok.AllArgsConstructor;
 
@@ -17,7 +17,7 @@ public class TeamRepositoryImpl implements CustomTeamRepository {
     private final EntityManager entityManager;
 
     @Override
-    public void insertTeam(String name, Discipline discipline, UserEntity captain) {
+    public void insertTeam(String name, Discipline discipline, PlayerEntity captain) {
         TeamEntity teamEntity = new TeamEntity();
         System.out.println(name);
         System.out.println(discipline);

@@ -27,6 +27,6 @@ public class TeamEntity implements Serializable {
     private Discipline discipline;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<UserEntity> players;
+    private List<PlayerEntity> players;
 
 }

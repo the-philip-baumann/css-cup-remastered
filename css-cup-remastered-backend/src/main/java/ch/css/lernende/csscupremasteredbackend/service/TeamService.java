@@ -8,9 +8,8 @@ import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
-import ch.css.lernende.csscupremasteredbackend.persistence.UserEntity;
+import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,15 +49,15 @@ public class TeamService {
     public void addTeam(TeamModel teamModel) {
         //TODO: Remove teamp captain and implement real user
 
-        UserEntity userEntity = new UserEntity();
-        userEntity.setFirstname("Philip");
-        userEntity.setLastname("Baumann");
-        userEntity.setDiscipline(Discipline.FOOTBALL);
-        userEntity.setRole(Role.ADMIN);
-        userEntity.setEmail("philip.baumann@hispeed.ch");
-        userEntity.setFunction("IEL*");
+        PlayerEntity playerEntity = new PlayerEntity();
+        playerEntity.setFirstname("Philip");
+        playerEntity.setLastname("Baumann");
+        playerEntity.setDiscipline(Discipline.FOOTBALL);
+        playerEntity.setRole(Role.ADMIN);
+        playerEntity.setEmail("philip.baumann@hispeed.ch");
+        playerEntity.setFunction("IEL*");
 
-        teamRepository.insertTeam(teamModel.getName(), teamModel.getDiscipline(), userEntity);
+        teamRepository.insertTeam(teamModel.getName(), teamModel.getDiscipline(), playerEntity);
     }
 
     public void deleteTeam(Optional<Long> id) throws IllegalArgumentException {

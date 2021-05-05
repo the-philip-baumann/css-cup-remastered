@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity(name = "player")
-public class UserEntity implements Serializable {
+public class PlayerEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class UserEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private TeamEntity team;
 
-    public UserEntity (
+    public PlayerEntity(
             String firstname,
             String lastname,
             String  function,
@@ -61,7 +61,7 @@ public class UserEntity implements Serializable {
         this.discipline = discipline;
     }
 
-    public UserEntity () {
+    public PlayerEntity() {
 
     }
 
