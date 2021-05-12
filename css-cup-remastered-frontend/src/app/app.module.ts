@@ -7,6 +7,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { UebersichtComponent } from './uebersicht/uebersicht.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AuthComponent } from './auth/auth.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthComponent } from './auth/auth.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

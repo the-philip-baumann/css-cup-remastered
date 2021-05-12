@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {TeamDto} from "../service/dto/team.dto";
 
 @Component({
   selector: 'app-uebersicht',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UebersichtComponent implements OnInit {
 
-  constructor() { }
+  teams: TeamDto[];
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient) { }
+
+  async ngOnInit(): Promise<void> {
+    console.log('Übersicht aufgerufen')
+    this.teams = await this.http.get<TeamDto[]>(environment.remote + 'team/all').toPromise()
+    console.log(this.teams);
   }
 
 }
