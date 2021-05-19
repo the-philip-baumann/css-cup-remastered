@@ -8,6 +8,9 @@
     height: 1000px;
     margin-left: 10%;
     margin-right: 10%;
+  }
+
+  .teams {
     display: flex;
     flex-wrap: wrap;
   }
@@ -70,6 +73,17 @@
   .team-body:first-child {
     border-top: 1px solid black;
   }
+}
+
+.right-sided {
+  float: right;
+}
+
+.toolbox-container {
+  width: 80%;
+  height: 100px;
+  margin-left: 10%;
+  text-align: center;
 }
 
 @media screen and (min-width: 2000px){

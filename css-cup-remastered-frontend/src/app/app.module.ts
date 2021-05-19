@@ -8,6 +8,7 @@ import { UebersichtComponent } from './uebersicht/uebersicht.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from "@angular/common/http";
+import { CreateTeamComponent } from './create-team/create-team.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
     UebersichtComponent,
     AdministrationComponent,
     AuthComponent,
+    CreateTeamComponent,
   ],
   imports: [
     BrowserModule,

@@ -87,7 +87,7 @@ CREATE TABLE public.player
 --
 --
 INSERT INTO discipline (name)
-VALUES ('FOOBALL'),
+VALUES ('FOOTBALL'),
        ('VOLLEYBALL'),
        ('UNDECIDED');
 
