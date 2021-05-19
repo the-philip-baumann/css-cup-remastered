@@ -13,8 +13,6 @@ public class PlayerMapper {
                 .firstname(playerEntity.getFirstname())
                 .lastname(playerEntity.getLastname())
                 .function(playerEntity.getFunction())
-                .role(playerEntity.getRole())
-                .discipline(playerEntity.getDiscipline())
                 .build();
     }
 

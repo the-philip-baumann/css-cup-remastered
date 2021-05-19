@@ -1,7 +1,5 @@
 package ch.css.lernende.csscupremasteredbackend.persistence;
 
-import ch.css.lernende.csscupremasteredbackend.model.Discipline;
-import ch.css.lernende.csscupremasteredbackend.model.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +8,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@Entity(name = "player")
+@Entity
+@Table(name = "player", schema = "public")
 public class PlayerEntity implements Serializable {
 
     @Id
@@ -34,31 +33,28 @@ public class PlayerEntity implements Serializable {
     @Column(name = "password")
     private byte[] password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    @Enumerated(EnumType.STRING)
-    private Discipline discipline;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private TeamEntity playerTeam;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private TeamEntity team;
+    private RoleEntity playerRole;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private DisciplineEntity playerDiscipline;
+
 
     public PlayerEntity(
             String firstname,
             String lastname,
             String  function,
             String email,
-            byte[] password,
-            Role role,
-            Discipline discipline
+            byte[] password
     ) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.function = function;
         this.email = email;
         this.password = password;
-        this.role = role;
-        this.discipline = discipline;
     }
 
     public PlayerEntity() {

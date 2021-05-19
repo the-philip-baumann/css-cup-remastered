@@ -4,6 +4,7 @@ import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.model.UserModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.user.PlayerRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +14,11 @@ import java.security.spec.InvalidKeySpecException;
 @Service
 public class AuthService {
 
-    private PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
 
     @Autowired
     public AuthService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
-    }
-
-    public AuthService() {
     }
 
     public String register(UserModel userModel) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -30,16 +28,14 @@ public class AuthService {
         playerEntity.setFunction(userModel.getLastname());
         playerEntity.setEmail(userModel.getEmail());
         playerEntity.setPassword(encryptPassword(userModel.getPassword()));
-        playerEntity.setRole(userModel.getRole());
-        playerEntity.setDiscipline(userModel.getDiscipline());
         PlayerEntity savedEntity = this.playerRepository.save(playerEntity);
 
-        return generateAccessToken(savedEntity.getId(), savedEntity.getEmail(), savedEntity.getRole());
+        return generateAccessToken(savedEntity.getId(), savedEntity.getEmail());
     }
 
     public String login(String email, String password) {
         PlayerEntity playerEntity = this.playerRepository.findByEmail(email);
-        return generateAccessToken(playerEntity.getId(), playerEntity.getEmail(), playerEntity.getRole());
+        return generateAccessToken(playerEntity.getId(), playerEntity.getEmail());
     }
 
     private boolean validatePassword(String password) {
@@ -53,7 +49,7 @@ public class AuthService {
        return plain.getBytes();
     }
 
-    private String generateAccessToken(long id, String email, Role role) {
+    private String generateAccessToken(long id, String email) {
         // TODO: Implement JWT strategy
         return "JWT-TEMPORARY-TOKEN";
     }

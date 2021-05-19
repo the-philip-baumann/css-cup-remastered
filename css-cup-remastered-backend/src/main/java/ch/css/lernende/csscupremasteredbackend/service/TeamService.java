@@ -52,8 +52,6 @@ public class TeamService {
         PlayerEntity playerEntity = new PlayerEntity();
         playerEntity.setFirstname("Philip");
         playerEntity.setLastname("Baumann");
-        playerEntity.setDiscipline(Discipline.FOOTBALL);
-        playerEntity.setRole(Role.ADMIN);
         playerEntity.setEmail("philip.baumann@hispeed.ch");
         playerEntity.setFunction("IEL*");
 

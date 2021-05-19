@@ -28,7 +28,6 @@ public class TeamMapper {
 
     public static TeamDto teamEntityToTeamDto (TeamEntity teamEntity) {
         TeamDto teamDto = new TeamDto();
-        teamDto.setDiscipline(teamEntity.getDiscipline());
         teamDto.setName(teamEntity.getName());
         teamDto.setPlayers(Arrays.asList());
         return teamDto;

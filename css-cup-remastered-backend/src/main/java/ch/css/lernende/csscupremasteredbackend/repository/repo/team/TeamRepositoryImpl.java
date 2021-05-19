@@ -22,7 +22,6 @@ public class TeamRepositoryImpl implements CustomTeamRepository {
         System.out.println(name);
         System.out.println(discipline);
         teamEntity.setName(name);
-        teamEntity.setDiscipline(discipline);
         teamEntity.setPlayers(Collections.singletonList(captain));
         entityManager.persist(teamEntity);
 
