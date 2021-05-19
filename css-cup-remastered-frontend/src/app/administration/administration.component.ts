@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {PlayerDto} from "../service/dto/player.dto";
 
 @Component({
   selector: 'app-administration',
@@ -9,9 +12,12 @@ export class AdministrationComponent implements OnInit {
 
   test = [1,2,3,4,5,6,7,8,9,10];
 
-  constructor() { }
+  players: PlayerDto[];
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {}
+
+  async ngOnInit(): Promise<void> {
+    this.players = await this.http.get<PlayerDto[]>(environment.remote + "player/all").toPromise();
   }
 
   edit(): void {

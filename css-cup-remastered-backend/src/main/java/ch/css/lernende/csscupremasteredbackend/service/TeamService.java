@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class TeamService {
@@ -27,7 +29,10 @@ public class TeamService {
     }
 
     public List<TeamDto> fetchAll() {
-        return TeamMapper.teamEntitiesToTeamDtos(teamRepository.findAll());
+        Iterable<TeamEntity> teams = teamRepository.findAll();
+        List<TeamEntity> list = StreamSupport.stream(teams.spliterator(), true)
+                .collect(Collectors.toList());
+        return TeamMapper.teamEntitiesToTeamDtos(list);
     }
 
     public TeamDto fetchTeam(Optional<Long> id) throws NoResultsFoundException, IllegalParameterException {

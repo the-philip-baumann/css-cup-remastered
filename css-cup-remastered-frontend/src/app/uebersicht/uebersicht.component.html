@@ -1,36 +1,9 @@
 <main class="content">
   <div class="team" *ngFor="let team of teams">
     <div class="team-header">
-      <h3 class="team-title">Team</h3>
+      <h3 class="team-title">{{team.name}}</h3>
     </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
-      ölöölaksjdfölkasdf
-    </div>
-    <div class="team-body">
+    <div class="team-body" *ngFor="let player of team.players">
       ölöölaksjdfölkasdf
     </div>
     <div class="team-join">

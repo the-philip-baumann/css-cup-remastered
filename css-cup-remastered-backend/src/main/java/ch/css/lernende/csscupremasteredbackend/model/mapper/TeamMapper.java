@@ -1,6 +1,7 @@
 package ch.css.lernende.csscupremasteredbackend.model.mapper;
 
 import ch.css.lernende.csscupremasteredbackend.dto.TeamDto;
+import ch.css.lernende.csscupremasteredbackend.model.Discipline;
 import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 
@@ -29,7 +30,8 @@ public class TeamMapper {
     public static TeamDto teamEntityToTeamDto (TeamEntity teamEntity) {
         TeamDto teamDto = new TeamDto();
         teamDto.setName(teamEntity.getName());
-        teamDto.setPlayers(Arrays.asList());
+        teamDto.setPlayers(PlayerMapper.listUserEntityToListUserEntity(teamEntity.getPlayers()));
+        teamDto.setDiscipline(Discipline.valueOf(teamEntity.getTeamDiscipline().getName()));
         return teamDto;
     }
 

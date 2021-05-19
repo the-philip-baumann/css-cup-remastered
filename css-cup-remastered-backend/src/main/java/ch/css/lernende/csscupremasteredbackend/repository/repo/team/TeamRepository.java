@@ -13,6 +13,4 @@ public interface TeamRepository extends CrudRepository<TeamEntity, Long>, Custom
 
     TeamEntity findById(long id);
 
-    List<TeamEntity> findAll();
-
 }

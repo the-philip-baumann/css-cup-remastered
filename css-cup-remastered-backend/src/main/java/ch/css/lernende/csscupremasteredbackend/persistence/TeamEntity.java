@@ -27,6 +27,6 @@ public class TeamEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private DisciplineEntity teamDiscipline;
 
-    @OneToMany(mappedBy = "playerTeam", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "playerTeam", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<PlayerEntity> players = new ArrayList<>();
 }
