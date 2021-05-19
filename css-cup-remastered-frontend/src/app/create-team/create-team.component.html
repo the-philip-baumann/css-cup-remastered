@@ -1,0 +1,37 @@
+<main class="content col-md-6 offset-3">
+  <form class="create-team" (ngSubmit)="submit()">
+    <div class="form-group centered">
+      <h1>{{teamView.teamName}}</h1>
+    </div>
+    <div class="form-group centered">
+      <button type="button" class="btn btn-primary" (click)="setDiscipline()">Switch</button>
+    </div>
+    <div class="form-group">
+      <label for="teamname"></label>
+      <input [(ngModel)]="teamView.teamName"
+             [ngModelOptions]="{standalone: true}"
+             name="teamname"
+             type="text"
+             id="teamname"
+             class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Spieler ohne Team</label>
+      <select class="form-control">
+        <option
+          *ngFor="let player of teamView.playerSolo"
+          (click)="addPlayerToTeam(player)"
+        >Default select</option>
+      </select>
+    </div>
+    <div class="players-container">
+      <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFromTeam(player)">
+        {{player.firstname}} {{player.lastname}} {{player.function}} &#10004;
+      </div>
+    </div>
+    <div class="form-group centered">
+      <button type="submit" class="btn btn-primary">Erstellen</button>
+    </div>
+  </form>
+</main>
