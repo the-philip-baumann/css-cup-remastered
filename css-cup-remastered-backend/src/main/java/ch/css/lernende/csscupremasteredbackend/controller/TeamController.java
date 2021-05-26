@@ -34,6 +34,7 @@ public class TeamController {
         return ResponseEntity.ok(teams);
     }
 
+    //TODO: Remove
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity fetchTeam(@PathVariable Optional<Long> id) {
         try {
@@ -54,12 +55,14 @@ public class TeamController {
         return ResponseEntity.ok("Team was created");
     }
 
+    // TODO: Possibly Remove
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
         teamService.deleteTeam(id);
         return ResponseEntity.ok("Team was deleted");
     }
 
+    //TODO: Remove
     @PostMapping(path = "/rename", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity renameTeam(@RequestBody RenameTeamDto renameTeam) {
         System.out.println(renameTeam.getName());
