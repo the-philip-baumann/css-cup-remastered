@@ -13,6 +13,8 @@ import {Router} from "@angular/router";
 })
 export class CreateTeamComponent implements OnInit {
 
+  dropdown = false
+
   teamView = {
     teamName: 'asdf',
     discipline: 'FOOTBALL',
@@ -28,6 +30,7 @@ export class CreateTeamComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.teamView.playerSolo = await this.http.get<PlayerInfoDto[]>(environment.remote + "player/solo").toPromise()
+    console.log(this.teamView.playerSolo)
   }
 
   setDiscipline(): void {
@@ -35,6 +38,9 @@ export class CreateTeamComponent implements OnInit {
   }
 
   addPlayerToTeam(player: PlayerInfoDto): void {
+    let index = this.teamView.playerSolo.indexOf(player, 0)
+    console.log(index);
+    this.teamView.playerSolo.splice(index, 1)
     this.teamView.playerTeam.push(player)
   }
 
@@ -52,5 +58,9 @@ export class CreateTeamComponent implements OnInit {
 
     await this.http.post<void>(environment.remote + "team/add", this.team).toPromise()
     await this.router.navigate(['/team-uebersicht'])
+  }
+
+  toggleDropDown() {
+    this.dropdown = !this.dropdown
   }
 }

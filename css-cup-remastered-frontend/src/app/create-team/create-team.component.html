@@ -4,7 +4,7 @@
       <h1>{{teamView.teamName}}</h1>
     </div>
     <div class="form-group centered">
-      <button type="button" class="btn btn-primary" (click)="setDiscipline()">Switch</button>
+     <app-discipline-switch-button></app-discipline-switch-button>
     </div>
     <div class="form-group">
       <label for="teamname"></label>
@@ -17,13 +17,12 @@
       >
     </div>
     <div class="form-group">
-      <label>Spieler ohne Team</label>
-      <select class="form-control">
-        <option
-          *ngFor="let player of teamView.playerSolo"
-          (click)="addPlayerToTeam(player)"
-        >Default select</option>
-      </select>
+      <button type="button" (click)="toggleDropDown()" class="btn btn-primary full-width"> Players without a team</button>
+      <div class="dropdown-container full-width" *ngIf="dropdown">
+        <div class="dropdown-player-item" *ngFor="let player of teamView.playerSolo" (click)="addPlayerToTeam(player)">
+          {{player.firstname}} {{player.lastname}} ({{player.function}})
+        </div>
+      </div>
     </div>
     <div class="players-container">
       <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFromTeam(player)">

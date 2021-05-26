@@ -1,5 +1,6 @@
 package ch.css.lernende.csscupremasteredbackend.model.mapper;
 
+import ch.css.lernende.csscupremasteredbackend.dto.CompletePlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.FullPlayerModel;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
@@ -30,4 +31,16 @@ public class PlayerMapper {
                 .discipline(playerDto.getDiscipline())
                 .build();
     }
+
+    public static CompletePlayerDto playerEntityToCompletePlayerDto(PlayerEntity playerEntity) {
+        return CompletePlayerDto.builder()
+                .firstname(playerEntity.getFirstname())
+                .lastname(playerEntity.getLastname())
+                .email(playerEntity.getEmail())
+                .fucntion(playerEntity.getFirstname())
+                .build();
+    }
+
+
+
 }

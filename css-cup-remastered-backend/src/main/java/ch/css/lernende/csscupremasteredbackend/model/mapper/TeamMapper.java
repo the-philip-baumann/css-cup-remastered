@@ -27,18 +27,18 @@ public class TeamMapper {
 
     }
 
-    public static TeamDto teamEntityToTeamDto (TeamEntity teamEntity) {
-        TeamDto teamDto = new TeamDto();
-        teamDto.setName(teamEntity.getName());
-        teamDto.setPlayers(PlayerMapper.listUserEntityToListUserEntity(teamEntity.getPlayers()));
-        teamDto.setDiscipline(Discipline.valueOf(teamEntity.getTeamDiscipline().getName()));
-        return teamDto;
+    public static TeamDto teamEntityToTeamDto(TeamEntity teamEntity) {
+        return TeamDto.builder()
+                .name(teamEntity.getName())
+                .players(PlayerMapper.listUserEntityToListUserEntity(teamEntity.getPlayers()))
+                .discipline(Discipline.valueOf(teamEntity.getTeamDiscipline().getName()))
+                .build();
     }
 
     public static List<TeamDto> teamEntitiesToTeamDtos(List<TeamEntity> teamEntities) {
         return teamEntities.stream()
                 .map(TeamMapper::teamEntityToTeamDto).
-                collect(Collectors.toList());
+                        collect(Collectors.toList());
     }
 
 }
