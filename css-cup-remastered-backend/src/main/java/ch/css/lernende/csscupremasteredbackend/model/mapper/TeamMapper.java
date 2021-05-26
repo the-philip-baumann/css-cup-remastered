@@ -28,6 +28,11 @@ public class TeamMapper {
     }
 
     public static TeamDto teamEntityToTeamDto(TeamEntity teamEntity) {
+
+        if (teamEntity == null) {
+            return null;
+        }
+
         return TeamDto.builder()
                 .name(teamEntity.getName())
                 .players(PlayerMapper.listUserEntityToListUserEntity(teamEntity.getPlayers()))

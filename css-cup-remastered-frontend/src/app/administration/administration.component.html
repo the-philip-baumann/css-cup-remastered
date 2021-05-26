@@ -16,34 +16,34 @@
         <h3>Funktion</h3>
       </div>
       <div class="table-col-role coloring">
-        <h3>Team</h3>
+        <h3>Rolle</h3>
       </div>
       <div class="table-col-team coloring">
-        <h3>Rolle</h3>
+        <h3>Team</h3>
       </div>
       <div class="table-col-toolbar coloring">
         <h3>Toolbar</h3>
       </div>
     </div>
-    <div class="table-body" *ngFor="let t of test">
+    <div class="table-body" *ngFor="let player of players">
       <div class="table-col-firstname boxing">
-        Philip
+        {{player.firstname}}
       </div>
       <div class="table-col-lastname boxing">
-        Baumann
+        {{player.lastname}}
       </div>
       <div class="table-col-function boxing">
-        *IEL
+        {{player.function}}
       </div>
       <div class="table-col-role boxing">
-        Captain
+        {{player.role}}
       </div>
       <div class="table-col-team boxing">
-        Tottenham
+        {{player.team != null ? player.team.name : ''}}
       </div>
       <div class="table-col-toolbar boxing">
         <i class="far fa-edit" (click)="edit()"></i>
-        <i class="far fa-trash-alt" (click)="delete()"></i>
+        <i class="far fa-trash-alt" (click)="delete(player)"></i>
       </div>
     </div>
   </div>

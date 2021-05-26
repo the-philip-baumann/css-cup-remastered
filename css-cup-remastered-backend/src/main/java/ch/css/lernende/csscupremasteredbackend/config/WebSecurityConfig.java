@@ -14,7 +14,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .regexMatchers("/*")
+                .regexMatchers("/*", "/")
                 .permitAll()
                 .and().cors()
                 .and().csrf()
