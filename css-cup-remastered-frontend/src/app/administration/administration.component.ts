@@ -11,19 +11,25 @@ import {PlayerDto} from "../service/dto/player.dto";
 export class AdministrationComponent implements OnInit {
 
 
-  players: PlayerDto[];
+  players: PlayerDto[]
 
   constructor(private http: HttpClient) {}
 
   async ngOnInit(): Promise<void> {
-    this.players = await this.http.get<PlayerDto[]>(environment.remote + "player/all").toPromise();
+    await this.fetchAllPlayers()
+  }
+
+  async fetchAllPlayers(): Promise<void> {
+    this.players = await this.http.get<PlayerDto[]>(environment.remote + "player/all").toPromise()
   }
 
   edit(): void {
-    throw new Error('Not implemented yet');
+    throw new Error('Not implemented yet')
   }
 
-  delete(): void {
-    throw new Error('Not implemented yet');
+  async delete(player: PlayerDto): Promise<void> {
+    console.log(player.id)
+    await this.http.delete(environment.remote + "player/" + player.id).toPromise()
+    await this.fetchAllPlayers()
   }
 }

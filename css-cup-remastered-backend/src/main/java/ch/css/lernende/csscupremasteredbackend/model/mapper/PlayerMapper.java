@@ -49,6 +49,7 @@ public class PlayerMapper {
 
     public static PlayerTeamRoleDto playerEntityToPlayerTeamRoleDto(PlayerEntity playerEntity) {
         return PlayerTeamRoleDto.builder()
+                .id(playerEntity.getId())
                 .firstname(playerEntity.getFirstname())
                 .lastname(playerEntity.getLastname())
                 .function(playerEntity.getFunction())

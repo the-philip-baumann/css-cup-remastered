@@ -11,6 +11,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 public class PlayerTeamRoleDto {
+    private long id;
     private String firstname;
     private String lastname;
     private String function;
