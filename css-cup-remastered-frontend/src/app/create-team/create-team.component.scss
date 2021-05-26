@@ -18,3 +18,28 @@
 div.form-group {
   margin-top: 30px;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.dropdown-player-item {
+  padding: 10px;
+  background: white;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+div.dropdown-player-item:hover {
+  background: #abdaf5;
+}
+
+.dropdown-player-item:nth-child(2n + 1) {
+  background-color: lightgrey;
+}
+
+.dropdown-player-item:last-child {
+  border-bottom: 1px solid black;
+}
+
+

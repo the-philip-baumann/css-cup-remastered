@@ -9,6 +9,8 @@ import { AdministrationComponent } from './administration/administration.compone
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CreateTeamComponent } from './create-team/create-team.component';
+import {FormsModule} from "@angular/forms";
+import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button/discipline-switch-button.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { CreateTeamComponent } from './create-team/create-team.component';
     AdministrationComponent,
     AuthComponent,
     CreateTeamComponent,
+    DisciplineSwitchButtonComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

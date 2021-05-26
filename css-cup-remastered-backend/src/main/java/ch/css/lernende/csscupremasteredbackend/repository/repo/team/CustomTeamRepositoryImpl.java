@@ -12,7 +12,7 @@ import java.util.Collections;
 
 @AllArgsConstructor
 @Transactional
-public class TeamRepositoryImpl implements CustomTeamRepository {
+public class CustomTeamRepositoryImpl implements CustomTeamRepository {
 
     private final EntityManager entityManager;
 

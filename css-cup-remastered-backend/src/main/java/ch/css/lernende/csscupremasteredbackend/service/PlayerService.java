@@ -1,12 +1,11 @@
 package ch.css.lernende.csscupremasteredbackend.service;
 
-import ch.css.lernende.csscupremasteredbackend.dto.FullPlayerModel;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.PlayerMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.user.PlayerRepository;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +52,10 @@ public class PlayerService {
         }
 
         //TODO: Implement edit player
+    }
+
+    public List<PlayerDto> getAllPlayersWithoutTeam() {
+        List<PlayerEntity> playerEntities = this.playerRepository.findAllPlayersWithoutTeam();
+        return PlayerMapper.listUserEntityToListUserEntity(playerEntities);
     }
 }
