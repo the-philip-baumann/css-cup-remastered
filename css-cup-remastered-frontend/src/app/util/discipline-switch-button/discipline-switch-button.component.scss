@@ -1,0 +1,28 @@
+.button-wrapper {
+  display: inline-flex;
+  text-align: center;
+}
+
+.btn-group-member {
+  width: 100px;
+}
+
+.btn-left {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 10px;
+  border-right: none;
+  background: white;
+}
+
+.btn-right {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+  background: white;
+  //border-left: none;
+}
+
+.switcher-active {
+  background: #abdaf5;
+}
