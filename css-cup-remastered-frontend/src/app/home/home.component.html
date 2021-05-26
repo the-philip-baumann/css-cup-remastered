@@ -1,0 +1,83 @@
+<div class="content col-md-8 offset-2">
+  <div class="css-title">
+    <h1>CSS-CUP</h1>
+  </div>
+
+  <div class="content-container welcome">
+    <div class="content-title">
+      <h2>Willkommen</h2>
+      <hr>
+    </div>
+    <div class="indent">
+      <p>
+        Endlich steht es fest - das Datum des diesjährigen CSS-CUP 2019.
+      </p>
+      <p>
+        Auf Grund einiger Terminkollisionen war die Suche nicht ganz einfach, doch nach einigem Ihn und Her konnten wir
+        mit dem FC Horw das Datum nun fixieren.
+      </p>
+      <p>
+        Am 05.07.2019 treffend wir uns zum alljährlichen sportlichen get together auf dem Seefeld Horw.
+      </p>
+      <p>
+        Seit 2003 treffen die Mitarbeiter beim sportlichen Plausch-Turnier aufeinander. In den Disziplinen Fussball und
+        Volleyball wird um Ruhm, Ehre und natürlich unsere 6 Wanderpokale gekämpft.
+      </p>
+      <p>
+        Die Sanagate und der SKV freuen
+        sich, euch auch in diesem Jahr willkommen zu heissen. Wir freuen uns bereits heute auf einen unterhaltsamen Tag
+        und viele tolle Begegnungen auf, sowie neben dem Spielfeld.
+      </p>
+      <p>
+        Stell dich der Herausforderung und melde dich mit deiner Mannschaft bis am 07.06.2019 an!
+        (Anmeldungen nach diesem Datum können nicht mehr berücksichtigt werden!)
+      </p>
+      <p>
+        Mit der neuen CSS-Cup Webseite kommt auch ein neues Anmeldeverfahren. Registriere dich direkt
+      </p>
+      <p>
+        bei der CSS-Cup Webseite.
+        Du kannst als Captain eines Teams Spieler hinzufügen oder als Spieler einem Team hinzugefügt werden.
+      </p>
+
+      <p>
+        Wie du vorzugehen hast und sonstige nützliche Informationen findest du auf dieser Seite. Bei allfälligen Fragen
+        wende dich bitte an Vivienne Hodel (ursula.pilger@css.ch).
+      </p>
+    </div>
+  </div>
+
+
+  <div class="rules content-container">
+    <div class="content-title">
+      <h2>Spielregeln Fussball</h2>
+      <hr>
+    </div>
+    <ul class="indent">
+      <li *ngFor="let rule of footballRules"> {{rule}}</li>
+    </ul>
+
+    <div class="content-title content-container">
+      <h2>Spielregeln Volleyball</h2>
+      <hr>
+    </div>
+    <ul class="indent">
+      <li *ngFor="let rule of volleyballRules">{{rule}}</li>
+    </ul>
+  </div>
+
+  <div class="content-container google-maps">
+    <div class="content-title">
+      <h2>Anreise</h2>
+      <hr>
+    </div>
+    <ul class="indent">
+      <li *ngFor="let info of anfahrtInfos">{{info}}</li>
+    </ul>
+
+    <iframe class="google-maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4731.592088970075!2d8.304196352715135!3d47.011869565194296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ffa41f029424b%3A0x1aeec06af2053591!2sSeefeld%20Horw!5e0!3m2!1sde!2sch!4v1622012067524!5m2!1sde!2sch"
+            loading="eager"></iframe>
+
+  </div>
+</div>

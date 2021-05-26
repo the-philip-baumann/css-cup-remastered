@@ -11,6 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CreateTeamComponent } from './create-team/create-team.component';
 import {FormsModule} from "@angular/forms";
 import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button/discipline-switch-button.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button
     AuthComponent,
     CreateTeamComponent,
     DisciplineSwitchButtonComponent,
+    HomeComponent,
   ],
     imports: [
         BrowserModule,

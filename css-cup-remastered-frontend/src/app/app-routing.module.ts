@@ -4,13 +4,14 @@ import {UebersichtComponent} from "./uebersicht/uebersicht.component";
 import {AdministrationComponent} from "./administration/administration.component";
 import {AuthComponent} from "./auth/auth.component";
 import {CreateTeamComponent} from "./create-team/create-team.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
-  // {
-  //   path: 'home',
-  //   pathMatch: 'full',
-  //   component: null,
-  // },
+  {
+    path: 'home',
+    pathMatch: 'full',
+    component: HomeComponent,
+  },
   {
     path: 'administration',
     component: AdministrationComponent
