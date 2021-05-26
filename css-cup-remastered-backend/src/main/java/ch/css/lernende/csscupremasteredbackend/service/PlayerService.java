@@ -1,6 +1,7 @@
 package ch.css.lernende.csscupremasteredbackend.service;
 
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
+import ch.css.lernende.csscupremasteredbackend.dto.PlayerTeamRoleDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.PlayerMapper;
@@ -22,13 +23,13 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public List<PlayerDto> getAllPlayers() throws NoResultsFoundException {
+    public List<PlayerTeamRoleDto> getAllPlayers() throws NoResultsFoundException {
         List<PlayerEntity> playerEntities = playerRepository.findAll();
         if (playerEntities.isEmpty()) {
             throw new NoResultsFoundException();
         }
 
-        return PlayerMapper.listUserEntityToListUserEntity(playerEntities);
+        return PlayerMapper.listPlayerEntityToPlayerTeamRoleDto(playerEntities);
     }
 
     public PlayerDto getSinglePlayer(Optional<Long> id) throws NoResultsFoundException, IllegalParameterException {

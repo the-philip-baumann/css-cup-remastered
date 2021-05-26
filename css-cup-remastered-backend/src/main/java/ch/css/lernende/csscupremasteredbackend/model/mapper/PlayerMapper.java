@@ -3,6 +3,8 @@ package ch.css.lernende.csscupremasteredbackend.model.mapper;
 import ch.css.lernende.csscupremasteredbackend.dto.CompletePlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.FullPlayerModel;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
+import ch.css.lernende.csscupremasteredbackend.dto.PlayerTeamRoleDto;
+import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 
 import java.util.List;
@@ -38,6 +40,20 @@ public class PlayerMapper {
                 .lastname(playerEntity.getLastname())
                 .email(playerEntity.getEmail())
                 .fucntion(playerEntity.getFirstname())
+                .build();
+    }
+
+    public static List<PlayerTeamRoleDto> listPlayerEntityToPlayerTeamRoleDto(List<PlayerEntity> playerEntity) {
+        return playerEntity.stream().map(PlayerMapper::playerEntityToPlayerTeamRoleDto).collect(Collectors.toList());
+    }
+
+    public static PlayerTeamRoleDto playerEntityToPlayerTeamRoleDto(PlayerEntity playerEntity) {
+        return PlayerTeamRoleDto.builder()
+                .firstname(playerEntity.getFirstname())
+                .lastname(playerEntity.getLastname())
+                .function(playerEntity.getFunction())
+                .team(TeamMapper.teamEntityToTeamDto(playerEntity.getPlayerTeam()))
+                .role(Role.valueOf(playerEntity.getPlayerRole().getName()))
                 .build();
     }
 

@@ -5,5 +5,5 @@ export interface PlayerDto {
   lastname: string;
   function: string;
   role: string;
-  team: TeamDto[];
+  team: TeamDto;
 }
