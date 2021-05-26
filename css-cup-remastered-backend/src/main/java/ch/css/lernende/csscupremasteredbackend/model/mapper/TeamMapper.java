@@ -34,6 +34,7 @@ public class TeamMapper {
         }
 
         return TeamDto.builder()
+                .id(teamEntity.getId())
                 .name(teamEntity.getName())
                 .players(PlayerMapper.listUserEntityToListUserEntity(teamEntity.getPlayers()))
                 .discipline(Discipline.valueOf(teamEntity.getTeamDiscipline().getName()))

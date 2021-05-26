@@ -5,4 +5,5 @@ import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 
 public interface CustomTeamRepository {
     void insertTeam(String name, Discipline discipline, PlayerEntity captain);
+    void addPlayerToTeam(long userId, long teamId);
 }

@@ -9,6 +9,7 @@ import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,12 @@ import java.util.stream.StreamSupport;
 public class TeamService {
 
     private TeamRepository teamRepository;
+    private PlayerRepository playerRepository;
 
     @Autowired
-    public TeamService(TeamRepository teamRepository) {
+    public TeamService(TeamRepository teamRepository, PlayerRepository playerRepository) {
         this.teamRepository = teamRepository;
+        this.playerRepository = playerRepository;
     }
 
     public List<TeamDto> fetchAll() {
@@ -73,5 +76,13 @@ public class TeamService {
 
     public void renameTeam(long id, String name) {
         // TODO: Implement
+    }
+
+    public void joinTeam(long userId, Optional<Long> id) throws IllegalParameterException {
+
+        long teamId = id.orElseThrow(IllegalParameterException::new);
+
+        this.teamRepository.addPlayerToTeam(userId, teamId);
+
     }
 }

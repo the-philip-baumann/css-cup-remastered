@@ -1,8 +1,8 @@
 <div class="button-wrapper">
   <div class="button-football">
-    <button class="btn-left btn-group-member" type="button" [ngClass]="{'switcher-active' : football}" (click)="switchDiscipline(true)">Fussball</button>
+    <button class="btn-left btn-group-member" type="button" [ngClass]="{'switcher-active' : isFootball}" (click)="switchDiscipline(true)">Fussball</button>
   </div>
   <div class="button-volleyball">
-    <button class="btn-right btn-group-member" type="button" [ngClass]="{'switcher-active' : !football}" (click)="switchDiscipline(false)">Volleyball</button>
+    <button class="btn-right btn-group-member" type="button" [ngClass]="{'switcher-active' : !isFootball}" (click)="switchDiscipline(false)">Volleyball</button>
   </div>
 </div>

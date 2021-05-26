@@ -67,6 +67,14 @@ public class TeamController {
         return ResponseEntity.ok("Team was renamed to: " + renameTeam.getName());
     }
 
-
-
+    @PostMapping(path = "/join/{id}")
+    public ResponseEntity joinTeam(@PathVariable Optional<Long> id) {
+        try {
+            // TODO: Implement proper user Id
+            teamService.joinTeam(9, id);
+            return ResponseEntity.ok().build();
+        } catch (IllegalParameterException e) {
+            return ResponseEntity.status(500).body("IllegalParameterException");
+        }
+    }
 }
