@@ -34,6 +34,7 @@ public class TeamController {
         return ResponseEntity.ok(teams);
     }
 
+    //TODO: Remove
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity fetchTeam(@PathVariable Optional<Long> id) {
         try {
@@ -48,18 +49,22 @@ public class TeamController {
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createTeam(@RequestBody AddTeamDto addTeamDto) {
-        TeamModel teamModel = AddTeamDtoToTeamModel.map(addTeamDto);
-
-        teamService.addTeam(teamModel);
-        return ResponseEntity.ok("Team was created");
+        try {
+            teamService.addTeam(addTeamDto);
+            return ResponseEntity.ok().build();
+        } catch (IllegalParameterException e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
+    // TODO: Possibly Remove
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
         teamService.deleteTeam(id);
         return ResponseEntity.ok("Team was deleted");
     }
 
+    //TODO: Remove
     @PostMapping(path = "/rename", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity renameTeam(@RequestBody RenameTeamDto renameTeam) {
         System.out.println(renameTeam.getName());
@@ -67,6 +72,14 @@ public class TeamController {
         return ResponseEntity.ok("Team was renamed to: " + renameTeam.getName());
     }
 
-
-
+    @PostMapping(path = "/join/{id}")
+    public ResponseEntity joinTeam(@PathVariable Optional<Long> id) {
+        try {
+            // TODO: Implement proper user Id
+            teamService.joinTeam(9, id);
+            return ResponseEntity.ok().build();
+        } catch (IllegalParameterException e) {
+            return ResponseEntity.status(500).body("IllegalParameterException");
+        }
+    }
 }

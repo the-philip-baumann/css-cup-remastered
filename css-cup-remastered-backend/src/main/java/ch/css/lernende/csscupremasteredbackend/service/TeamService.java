@@ -1,5 +1,6 @@
 package ch.css.lernende.csscupremasteredbackend.service;
 
+import ch.css.lernende.csscupremasteredbackend.dto.AddTeamDto;
 import ch.css.lernende.csscupremasteredbackend.dto.TeamDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
@@ -9,6 +10,7 @@ import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,13 @@ import java.util.stream.StreamSupport;
 @Service
 public class TeamService {
 
-    private TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
+    private final PlayerRepository playerRepository;
 
     @Autowired
-    public TeamService(TeamRepository teamRepository) {
+    public TeamService(TeamRepository teamRepository, PlayerRepository playerRepository) {
         this.teamRepository = teamRepository;
+        this.playerRepository = playerRepository;
     }
 
     public List<TeamDto> fetchAll() {
@@ -51,16 +55,18 @@ public class TeamService {
 
     }
 
-    public void addTeam(TeamModel teamModel) {
+    public void addTeam(AddTeamDto addTeamDto) throws IllegalParameterException {
         //TODO: Remove teamp captain and implement real user
+        Optional<PlayerEntity> playerEntity = this.playerRepository.findById(addTeamDto.getUserId());
+        playerEntity.orElseThrow(IllegalParameterException::new);
 
-        PlayerEntity playerEntity = new PlayerEntity();
-        playerEntity.setFirstname("Philip");
-        playerEntity.setLastname("Baumann");
-        playerEntity.setEmail("philip.baumann@hispeed.ch");
-        playerEntity.setFunction("IEL*");
+        teamRepository.insertTeam(addTeamDto.getName(), addTeamDto.getDiscipline(), playerEntity.get());
+        TeamEntity teamEntity = teamRepository.findByName(addTeamDto.getName());
 
-        teamRepository.insertTeam(teamModel.getName(), teamModel.getDiscipline(), playerEntity);
+        addTeamDto.getPlayers()
+                .stream()
+                .parallel()
+                .forEach(player -> playerRepository.addTeamToPlayer(teamEntity, player.getId()));
     }
 
     public void deleteTeam(Optional<Long> id) throws IllegalArgumentException {
@@ -73,5 +79,13 @@ public class TeamService {
 
     public void renameTeam(long id, String name) {
         // TODO: Implement
+    }
+
+    public void joinTeam(long userId, Optional<Long> id) throws IllegalParameterException {
+
+        long teamId = id.orElseThrow(IllegalParameterException::new);
+
+        this.teamRepository.addPlayerToTeam(userId, teamId);
+
     }
 }

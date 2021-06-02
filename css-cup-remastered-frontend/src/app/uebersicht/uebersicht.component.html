@@ -1,6 +1,6 @@
 <main class="content">
   <div class="toolbox-container center-child">
-    <button class="btn btn-primary">switch</button>
+    <app-discipline-switch-button (emitter)="switchDiscipline($event)"></app-discipline-switch-button>
     <button type="button" class="btn btn-primary right-sided" (click)="redirectToCreateTeamView()">Team erstellen</button>
   </div>
   <div class="teams">
@@ -9,9 +9,9 @@
         <h3 class="team-title">{{team.name}}</h3>
       </div>
       <div class="team-body" *ngFor="let player of team.players">
-        ölöölaksjdfölkasdf
+        {{player.firstname}} {{player.lastname}} ({{player.function}})
       </div>
-      <div class="team-join">
+      <div class="team-join" (click)="joinTeam(team)">
         JOIN
       </div>
     </div>

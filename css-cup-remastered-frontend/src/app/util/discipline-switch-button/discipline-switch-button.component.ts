@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-discipline-switch-button',
@@ -7,15 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisciplineSwitchButtonComponent implements OnInit {
 
+  @Output()
+  emitter = new EventEmitter<boolean>()
+
   constructor() { }
 
-  football = true;
+  isFootball = true
 
   ngOnInit(): void {
   }
 
   switchDiscipline(state: boolean): void {
-    this.football = state;
+    this.isFootball = state
+    this.emit()
+  }
+
+  emit(): void {
+    this.emitter.emit(this.isFootball)
   }
 
 }
