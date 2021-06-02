@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class AddTeamDto {
+    private long userId;
     private String name;
     private Discipline discipline;
     private List<PlayerDto> players;

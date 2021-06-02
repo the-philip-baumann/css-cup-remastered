@@ -1,5 +1,7 @@
 package ch.css.lernende.csscupremasteredbackend.repository.repo.player;
 
+import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
+import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManager;
@@ -17,5 +19,12 @@ public class CustomPlayerRepositoryImpl implements CustomPlayerRepository {
     public List findAllPlayersWithoutTeam() {
         Query query = entityManager.createQuery("SELECT p from PlayerEntity p WHERE p.playerTeam IS NULL");
         return query.getResultList();
+    }
+
+    @Override
+    public void addTeamToPlayer(TeamEntity teamEntity, long userId) {
+        PlayerEntity playerEntity = this.entityManager.find(PlayerEntity.class, userId);
+        playerEntity.setPlayerTeam(teamEntity);
+        this.entityManager.persist(playerEntity);
     }
 }

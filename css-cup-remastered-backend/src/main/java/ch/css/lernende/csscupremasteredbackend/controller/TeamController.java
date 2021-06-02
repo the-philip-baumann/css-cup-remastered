@@ -49,10 +49,12 @@ public class TeamController {
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createTeam(@RequestBody AddTeamDto addTeamDto) {
-        TeamModel teamModel = AddTeamDtoToTeamModel.map(addTeamDto);
-
-        teamService.addTeam(teamModel);
-        return ResponseEntity.ok("Team was created");
+        try {
+            teamService.addTeam(addTeamDto);
+            return ResponseEntity.ok().build();
+        } catch (IllegalParameterException e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     // TODO: Possibly Remove

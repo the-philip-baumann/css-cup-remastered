@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class PlayerDto {
+    private long id;
     private String firstname;
     private String lastname;
     private String function;

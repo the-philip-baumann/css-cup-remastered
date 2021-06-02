@@ -20,8 +20,6 @@ public class CustomTeamRepositoryImpl implements CustomTeamRepository {
     @Override
     public void insertTeam(String name, Discipline discipline, PlayerEntity captain) {
         TeamEntity teamEntity = new TeamEntity();
-        System.out.println(name);
-        System.out.println(discipline);
         teamEntity.setName(name);
         teamEntity.setPlayers(Collections.singletonList(captain));
         entityManager.persist(teamEntity);
