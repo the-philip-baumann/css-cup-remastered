@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {PlayerDto} from "../service/dto/player.dto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-administration',
@@ -13,7 +14,7 @@ export class AdministrationComponent implements OnInit {
 
   players: PlayerDto[]
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
     await this.fetchAllPlayers()
@@ -23,8 +24,8 @@ export class AdministrationComponent implements OnInit {
     this.players = await this.http.get<PlayerDto[]>(environment.remote + "player/all").toPromise()
   }
 
-  edit(): void {
-    throw new Error('Not implemented yet')
+  async edit(): Promise<void> {
+    await this.router.navigate(["edit-player"]);
   }
 
   async delete(player: PlayerDto): Promise<void> {

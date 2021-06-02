@@ -12,6 +12,7 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import {FormsModule} from "@angular/forms";
 import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button/discipline-switch-button.component';
 import { HomeComponent } from './home/home.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HomeComponent } from './home/home.component';
     CreateTeamComponent,
     DisciplineSwitchButtonComponent,
     HomeComponent,
+    EditPlayerComponent,
   ],
     imports: [
         BrowserModule,
