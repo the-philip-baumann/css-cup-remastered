@@ -1,11 +1,13 @@
 package ch.css.lernende.csscupremasteredbackend.service;
 
+import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.model.UserModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -31,8 +33,8 @@ public class AuthService {
         return generateAccessToken(savedEntity.getId(), savedEntity.getEmail());
     }
 
-    public String login(String email, String password) {
-        PlayerEntity playerEntity = this.playerRepository.findByEmail(email);
+    public String login(String email, String password) throws IllegalParameterException {
+        PlayerEntity playerEntity = this.playerRepository.findByEmail(email).orElseThrow(IllegalParameterException::new);
         return generateAccessToken(playerEntity.getId(), playerEntity.getEmail());
     }
 
