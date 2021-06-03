@@ -1,29 +1,76 @@
 $login-blue: rgb(46, 129, 252);
 
-.content {
-  width: 80%;
-  margin-left: 10%;
-  font-family: Geneva, serif;
-  display: inline-flex;
+@media screen and (max-width: 400px) {
+  .login {
+    background-color: #f2f1ed;
+    border-radius: 50px;
+    margin: 20px;
+  }
+
+  .introduction {
+    background-color: $login-blue;
+    border-radius: 50px;
+    padding: 25% 10% 25% 10%;
+    margin: 20px;
+  }
+
+  .credentials {
+    padding: 25% 10% 25% 10%;
+    display: inline-block;
+  }
+
+  .input {
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: none;
+    display: block;
+    width: 280px;
+    margin-bottom: 30px;
+  }
+
 }
 
-.register {
-  width: 50%;
-  color: white;
-}
+@media screen and (min-width: 401px) {
+  .content {
+    width: 80%;
+    margin-left: 10%;
+    font-family: Geneva, serif;
+    display: inline-flex;
+  }
 
-.login {
-  width: 50%;
-  background-color: #f2f1ed;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-}
+  .credentials {
+    padding: 25% 10% 25% 10%;
+    display: inline-block;
+  }
 
-.introduction {
-  background-color: $login-blue;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  padding: 25% 10% 25% 10%;
+  .register {
+    width: 50%;
+    color: white;
+  }
+
+  .login {
+    width: 50%;
+    background-color: #f2f1ed;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .introduction {
+    background-color: $login-blue;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    padding: 25% 10% 25% 10%;
+  }
+
+  .input {
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: none;
+    display: block;
+    width: 400px;
+    margin-bottom: 30px;
+  }
+
 }
 
 .btn-register {
@@ -50,19 +97,9 @@ h2.login-title {
   color: $login-blue;
 }
 
-.credentials {
-  padding: 25% 10% 25% 10%;
-  display: inline-block;
-}
 
-.input {
-  padding: 10px 10px 10px 10px;
-  border-radius: 10px;
-  border: none;
-  display: block;
-  width: 400px;
-  margin-bottom: 30px;
-}
+
+
 
 .coloring-login {
   background-color: $login-blue;

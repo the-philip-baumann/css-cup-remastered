@@ -1,6 +1,45 @@
+$light_grey: #f2eeed;
+$ulrta_light: #faf5f5;
+$menu-item: #e6e7e8;
+
+
 .nav {
   width: 80%;
   font-family: Geneva;
+}
+
+@media screen and (max-width: 400px) {
+  .nav {
+    //background: red;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  div.flexbox {
+    width: 100%;
+  }
+  a.nav-link {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+  }
+
+  a.nav-link:hover {
+    background: $menu-item;
+  }
+
+  p.menu-tag {
+    margin: 0;
+    background: $ulrta_light;
+    border-bottom: $light_grey 1px solid;
+  }
+
+  p.menu-tag:last-child {
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
 }
 
 
@@ -12,9 +51,9 @@
 
 @media screen and (min-width: 1400px) {
   .nav {
-    background-color: #f2eeed;
+    background-color: $light_grey;
     overflow: hidden;
-    border: 1px solid #808080;
+    border: 1px solid $menu-item;
     border-radius: 20px;
     margin: 50px 10% 50px 10%;
   }
