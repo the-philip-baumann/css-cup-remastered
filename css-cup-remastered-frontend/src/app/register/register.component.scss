@@ -1,0 +1,9 @@
+.content-centered {
+  text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  div.offset-3 {
+    margin-left: 0;
+  }
+}
