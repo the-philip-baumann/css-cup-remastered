@@ -25,7 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true
+)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PlayerRepository playerRepository;
@@ -65,10 +69,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         }
                 ).and();
-
-        http.authorizeRequests()
-                .antMatchers("/team/all").permitAll()
-                .antMatchers("/team/").authenticated();
+//
+//        http.authorizeRequests()
+//                .antMatchers("/team/all").permitAll()
+//                .antMatchers("/team/").authenticated();
 
         http.addFilterBefore(
                 requestInterceptor,
@@ -81,7 +85,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(email ->
-                (UserDetails) playerRepository.findByEmail(email).orElseThrow(
+                playerRepository.findByEmail(email).orElseThrow(
                         () -> new UsernameNotFoundException("Email not found")
                 )
         );
@@ -94,6 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+        System.out.println("Encoder fetched");
         return new BCryptPasswordEncoder();
     }
 

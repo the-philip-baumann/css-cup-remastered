@@ -14,7 +14,7 @@ public class UserModel {
     private String function;
     private String email;
     private String password;
-    private Role role;
-    private Discipline discipline;
+    private String role;
+    private String discipline;
 
 }

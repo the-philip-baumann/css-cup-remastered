@@ -48,7 +48,7 @@ public class JwtTokenUtil {
                 .withIssuer(ISSUER)
                 .withClaim("username", playerDto.getEmail())
                 .withClaim("expiryDate", calendar.getTime())
-                .withClaim("authority", new ArrayList<>())
+                .withClaim("role", playerDto.getRole().name())
                 .sign(ALGORITHM);
     }
 }

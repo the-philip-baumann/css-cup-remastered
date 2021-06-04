@@ -2,15 +2,18 @@ package ch.css.lernende.csscupremasteredbackend.persistence;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "player", schema = "public")
-public class PlayerEntity implements Serializable {
+public class PlayerEntity implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +34,7 @@ public class PlayerEntity implements Serializable {
 
     //TODO: remove nullable
     @Column(name = "password")
-    private byte[] password;
+    private String password;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private TeamEntity playerTeam;
@@ -42,13 +45,14 @@ public class PlayerEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private DisciplineEntity playerDiscipline;
 
+    private final boolean enabled = true;
 
     public PlayerEntity(
             String firstname,
             String lastname,
             String  function,
             String email,
-            byte[] password
+            String password
     ) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -61,4 +65,57 @@ public class PlayerEntity implements Serializable {
 
     }
 
+    public TeamEntity getPlayerTeam() {
+        return playerTeam;
+    }
+
+    public void setPlayerTeam(TeamEntity playerTeam) {
+        this.playerTeam = playerTeam;
+    }
+
+    public RoleEntity getPlayerRole() {
+        return playerRole;
+    }
+
+    public void setPlayerRole(RoleEntity playerRole) {
+        this.playerRole = playerRole;
+    }
+
+    public DisciplineEntity getPlayerDiscipline() {
+        return playerDiscipline;
+    }
+
+    public void setPlayerDiscipline(DisciplineEntity playerDiscipline) {
+        this.playerDiscipline = playerDiscipline;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return enabled;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

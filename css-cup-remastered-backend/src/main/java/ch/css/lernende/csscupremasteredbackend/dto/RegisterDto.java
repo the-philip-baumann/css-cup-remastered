@@ -25,8 +25,8 @@ public class RegisterDto implements Serializable {
 
     private String function;
 
-    private Role role;
+    private String role;
 
-    private Discipline discipline;
+    private String discipline;
 
 }

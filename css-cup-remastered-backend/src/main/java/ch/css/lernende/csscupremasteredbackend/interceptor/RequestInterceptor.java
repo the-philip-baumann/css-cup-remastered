@@ -53,7 +53,7 @@ public class RequestInterceptor extends OncePerRequestFilter {
             return;
         }
 
-        UserDetails userDetails = (UserDetails) playerRepository.findByEmail((jwtTokenUtil.getEmail(token))).orElse(null);
+        UserDetails userDetails = playerRepository.findByEmail((jwtTokenUtil.getEmail(token))).orElse(null);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken (
                 userDetails, null, userDetails == null ? List.of() : userDetails.getAuthorities()

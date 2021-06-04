@@ -3,7 +3,9 @@ package ch.css.lernende.csscupremasteredbackend.controller;
 import ch.css.lernende.csscupremasteredbackend.dto.LoginDto;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.RegisterDto;
+import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.model.PlayerModel;
+import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.PlayerMapper;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.RegisterDtoToUserModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
@@ -16,8 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -37,10 +41,10 @@ public class AuthController {
     }
 
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
+    public ResponseEntity<String> register(@RequestBody @Validated RegisterDto registerDto) {
         try {
             return ResponseEntity.ok(this.authService.register(RegisterDtoToUserModel.map(registerDto)));
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalParameterException e) {
             return ResponseEntity.status(500).body("Failed to encrypt password. Please try later");
         }
     }

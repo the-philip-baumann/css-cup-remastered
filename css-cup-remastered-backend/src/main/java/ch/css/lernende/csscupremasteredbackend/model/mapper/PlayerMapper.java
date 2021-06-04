@@ -4,6 +4,7 @@ import ch.css.lernende.csscupremasteredbackend.dto.CompletePlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.FullPlayerModel;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerTeamRoleDto;
+import ch.css.lernende.csscupremasteredbackend.model.Discipline;
 import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 
@@ -16,6 +17,9 @@ public class PlayerMapper {
                 .firstname(playerEntity.getFirstname())
                 .lastname(playerEntity.getLastname())
                 .function(playerEntity.getFunction())
+                .email(playerEntity.getEmail())
+                .role(Role.valueOf(playerEntity.getPlayerRole().getName()))
+                .discipline(Discipline.valueOf(playerEntity.getPlayerDiscipline().getName()))
                 .build();
     }
 
