@@ -5,6 +5,7 @@ import {AdministrationComponent} from "./administration/administration.component
 import {AuthComponent} from "./auth/auth.component";
 import {CreateTeamComponent} from "./create-team/create-team.component";
 import {HomeComponent} from "./home/home.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   {
@@ -16,10 +17,6 @@ const routes: Routes = [
     path: 'administration',
     component: AdministrationComponent
   },
-  // {
-  //   path: 'profile',
-  //   component: null
-  // },
   {
     path: 'uebersicht',
     component: UebersichtComponent,
@@ -29,14 +26,14 @@ const routes: Routes = [
     path: 'team-create',
     component: CreateTeamComponent
   },
-  // {
-  //   path: 'begegnungen',
-  //   component: null,
-  // },
   {
     path: 'auth/login',
     component: AuthComponent
   },
+  {
+    path: 'auth/register',
+    component: RegisterComponent
+  }
 ];
 
 @NgModule({
