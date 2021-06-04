@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class TeamController {
         this.teamService = teamService;
     }
 
+    @RolesAllowed("ADMIN")
     @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity fetchAllTeams() {
         List<TeamDto> teams = teamService.fetchAll();
