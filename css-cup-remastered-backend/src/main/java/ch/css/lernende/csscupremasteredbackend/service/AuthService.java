@@ -5,7 +5,7 @@ import ch.css.lernende.csscupremasteredbackend.model.UserModel;
 import ch.css.lernende.csscupremasteredbackend.persistence.DisciplineEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.RoleEntity;
-import ch.css.lernende.csscupremasteredbackend.repository.repo.DisciplineRepository;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.discipline.DisciplineRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.SQLException;
 
 @Service
 public class AuthService {
@@ -32,19 +33,9 @@ public class AuthService {
 
     }
 
-    public String register(UserModel userModel) throws NoSuchAlgorithmException, InvalidKeySpecException, IllegalParameterException {
-        PlayerEntity playerEntity = new PlayerEntity();
-        playerEntity.setFirstname(userModel.getFirstname());
-        playerEntity.setLastname(userModel.getLastname());
-        playerEntity.setFunction(userModel.getLastname());
-        playerEntity.setEmail(userModel.getEmail());
-        RoleEntity roleEntity = roleRepository.findByName(userModel.getRole()).orElseThrow(IllegalParameterException::new);
-        DisciplineEntity disciplineEntity = disciplineRepository.findByName(userModel.getDiscipline()).orElseThrow(IllegalParameterException::new);
-        playerEntity.setPlayerRole(roleEntity);
-        playerEntity.setPlayerDiscipline(disciplineEntity);
-        playerEntity.setPassword(encryptPassword(userModel.getPassword()));
-        PlayerEntity savedEntity = this.playerRepository.save(playerEntity);
-
+    public String register(UserModel userModel) throws NoSuchAlgorithmException, InvalidKeySpecException, IllegalParameterException, SQLException {
+        userModel.setPassword(encryptPassword(userModel.getPassword()));
+        PlayerEntity savedEntity = playerRepository.insertPlayer(userModel);
         return generateAccessToken(savedEntity.getId(), savedEntity.getEmail());
     }
 

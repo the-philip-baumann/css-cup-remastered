@@ -1,4 +1,4 @@
-package ch.css.lernende.csscupremasteredbackend.repository.repo;
+package ch.css.lernende.csscupremasteredbackend.repository.repo.discipline;
 
 import ch.css.lernende.csscupremasteredbackend.persistence.DisciplineEntity;
 import org.springframework.data.repository.CrudRepository;

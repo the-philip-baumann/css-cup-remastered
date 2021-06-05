@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.RolesAllowed;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.SQLException;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -44,7 +45,7 @@ public class AuthController {
     public ResponseEntity<String> register(@RequestBody @Validated RegisterDto registerDto) {
         try {
             return ResponseEntity.ok(this.authService.register(RegisterDtoToUserModel.map(registerDto)));
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalParameterException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalParameterException | SQLException e) {
             return ResponseEntity.status(500).body("Failed to encrypt password. Please try later");
         }
     }

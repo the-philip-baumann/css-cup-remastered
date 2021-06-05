@@ -39,7 +39,7 @@ public class RequestInterceptor extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         final String header = httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION);
-        if (header.isEmpty() || !header.startsWith("Bearer ")) {
+        if (header == null || (header.isEmpty() || !header.startsWith("Bearer "))) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
