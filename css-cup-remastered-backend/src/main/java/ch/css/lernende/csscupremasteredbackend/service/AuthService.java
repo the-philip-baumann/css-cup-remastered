@@ -36,19 +36,13 @@ public class AuthService {
         return generateAccessToken(playerEntity.getId(), playerEntity.getEmail());
     }
 
-    private boolean validatePassword(String password) {
-        // TODO: Implement spring security
-        return true;
-    }
-
-
     private byte[] encryptPassword(String plain) throws NoSuchAlgorithmException, InvalidKeySpecException {
         // TODO: Implement spring security
        return plain.getBytes();
     }
 
     private String generateAccessToken(long id, String email) {
-        // TODO: Implement JWT strategy
+
         return "JWT-TEMPORARY-TOKEN";
     }
 

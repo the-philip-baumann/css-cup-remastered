@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  remote: 'http://localhost:8080/'
+  remote: 'http://localhost:8080/',
+  bearer_token: 'access_token'
 };
 
 /*
