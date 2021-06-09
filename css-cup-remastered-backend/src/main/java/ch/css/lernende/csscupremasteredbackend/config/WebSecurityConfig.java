@@ -2,6 +2,7 @@ package ch.css.lernende.csscupremasteredbackend.config;
 
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.interceptor.RequestInterceptor;
+import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,14 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .regexMatchers("/*", "/")
-//                .permitAll()
-//                .and().cors()
-//                .and().csrf()
-//                .disable();
-
-
 
         http = http.cors().and().csrf().disable();
 
@@ -69,10 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         }
                 ).and();
-//
-//        http.authorizeRequests()
-//                .antMatchers("/team/all").permitAll()
-//                .antMatchers("/team/").authenticated();
+
+        http.authorizeRequests()
+                .regexMatchers("/team/all").permitAll()
+                .regexMatchers("/player/all").hasRole("ADMIN");
+//                .regexMatchers("/team/all").permitAll();
 
         http.addFilterBefore(
                 requestInterceptor,
@@ -108,7 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);

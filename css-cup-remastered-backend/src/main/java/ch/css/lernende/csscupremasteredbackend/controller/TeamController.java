@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,6 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    @RolesAllowed("ADMIN")
     @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity fetchAllTeams() {
         List<TeamDto> teams = teamService.fetchAll();
@@ -54,7 +54,7 @@ public class TeamController {
         try {
             teamService.addTeam(addTeamDto);
             return ResponseEntity.ok().build();
-        } catch (IllegalParameterException e) {
+        } catch (IllegalParameterException | SQLException e) {
             return ResponseEntity.status(500).build();
         }
     }

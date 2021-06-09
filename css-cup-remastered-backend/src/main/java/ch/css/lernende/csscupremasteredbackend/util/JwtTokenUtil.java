@@ -19,12 +19,9 @@ import java.util.Date;
 
 @Service
 public class JwtTokenUtil {
-    public String getEmail(String token) {
-        return null;
-    }
 
     private static final String SECRET_KEY = "secret";
-    private static final String ISSUER = "Cinegame-Backlog";
+    private static final String ISSUER = "CSS-CUP";
     private static final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY);
 
     public DecodedJWT verifyToken(String token) throws UnauthorizedException {
@@ -48,7 +45,8 @@ public class JwtTokenUtil {
                 .withIssuer(ISSUER)
                 .withClaim("username", playerDto.getEmail())
                 .withClaim("expiryDate", calendar.getTime())
-                .withClaim("role", playerDto.getRole().name())
+//                .withClaim("role", playerDto.getRole().name())
+                .withClaim("role", "ROLE_ADMIN")
                 .sign(ALGORITHM);
     }
 }

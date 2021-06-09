@@ -1,10 +1,10 @@
 package ch.css.lernende.csscupremasteredbackend.model;
 
 public enum Role {
-    ADMIN ("ADMIN"),
-    PARTICIPANT ("PARTICIPANT"),
-    CAPTAIN ("CAPTAIN"),
-    NOT_REGISTERED ("NOT_REGISTERED");
+    ROLE_ADMIN ("ROLE_ADMIN"),
+    ROLE_PARTICIPANT ("ROLE_PARTICIPANT"),
+    ROLE_CAPTAIN ("ROLE_CAPTAIN"),
+    ROLE_UNDECIDED ("ROLE_NOT_REGISTERED");
 
     public final String role;
 
