@@ -1,6 +1,7 @@
 package ch.css.lernende.csscupremasteredbackend.service;
 
 import ch.css.lernende.csscupremasteredbackend.dto.AddTeamDto;
+import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.TeamDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
@@ -15,6 +16,7 @@ import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,18 +57,18 @@ public class TeamService {
 
     }
 
-    public void addTeam(AddTeamDto addTeamDto) throws IllegalParameterException {
+    public void addTeam(AddTeamDto addTeamDto) throws IllegalParameterException, SQLException {
         //TODO: Remove teamp captain and implement real user
+
         Optional<PlayerEntity> playerEntity = this.playerRepository.findById(addTeamDto.getUserId());
         playerEntity.orElseThrow(IllegalParameterException::new);
 
         teamRepository.insertTeam(addTeamDto.getName(), addTeamDto.getDiscipline(), playerEntity.get());
         TeamEntity teamEntity = teamRepository.findByName(addTeamDto.getName());
 
-        addTeamDto.getPlayers()
-                .stream()
-                .parallel()
-                .forEach(player -> playerRepository.addTeamToPlayer(teamEntity, player.getId()));
+        for (PlayerDto entity : addTeamDto.getPlayers()) {
+            playerRepository.addTeamToPlayer(teamEntity, entity.getId());
+        }
     }
 
     public void deleteTeam(Optional<Long> id) throws IllegalArgumentException {

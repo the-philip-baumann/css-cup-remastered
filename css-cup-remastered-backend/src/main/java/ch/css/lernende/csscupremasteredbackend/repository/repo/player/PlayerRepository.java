@@ -5,9 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends CrudRepository<PlayerEntity, Long>, CustomPlayerRepository {
-        PlayerEntity findByEmail(String email);
+        Optional<PlayerEntity> findByEmail(String email);
         List<PlayerEntity> findAll();
 }
