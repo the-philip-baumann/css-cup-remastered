@@ -4,10 +4,10 @@ VALUES ('FOOTBALL'),
        ('UNDECIDED');
 
 INSERT INTO rolle (name)
-VALUES ('ADMIN'),
-       ('CAPTAIN'),
-       ('PARTICIPANT'),
-       ('UNDECIDED');
+VALUES ('ROLE_ADMIN'),
+       ('ROLE_CAPTAIN'),
+       ('ROLE_PARTICIPANT'),
+       ('ROLE_UNDECIDED');
 
 INSERT INTO team (name, team_discipline_id)
 VALUES

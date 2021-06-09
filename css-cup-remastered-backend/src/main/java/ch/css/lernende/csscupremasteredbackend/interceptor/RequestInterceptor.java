@@ -3,6 +3,7 @@ package ch.css.lernende.csscupremasteredbackend.interceptor;
 import ch.css.lernende.csscupremasteredbackend.exception.UnauthorizedException;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import ch.css.lernende.csscupremasteredbackend.util.JwtTokenUtil;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,14 +47,15 @@ public class RequestInterceptor extends OncePerRequestFilter {
 
         final String token = header.split(" ")[1].trim();
 
+        DecodedJWT decodedJWT;
         try {
-            jwtTokenUtil.verifyToken(token);
+            decodedJWT = jwtTokenUtil.verifyToken(token);
         } catch (UnauthorizedException e) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
 
-        UserDetails userDetails = playerRepository.findByEmail((jwtTokenUtil.getEmail(token))).orElse(null);
+        UserDetails userDetails = playerRepository.findByEmail(decodedJWT.getClaim("username").asString()).orElse(null);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken (
                 userDetails, null, userDetails == null ? List.of() : userDetails.getAuthorities()

@@ -30,7 +30,6 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    @RolesAllowed("ADMIN")
     @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity fetchAllTeams() {
         List<TeamDto> teams = teamService.fetchAll();
