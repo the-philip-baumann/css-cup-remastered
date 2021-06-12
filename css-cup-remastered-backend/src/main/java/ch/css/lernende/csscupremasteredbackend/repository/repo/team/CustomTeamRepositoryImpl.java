@@ -17,12 +17,10 @@ public class CustomTeamRepositoryImpl implements CustomTeamRepository {
     @Override
     @Transactional
     public void insertTeam(String name, Discipline discipline, PlayerEntity captain) {
-        this.entityManager.getTransaction().begin();
         TeamEntity teamEntity = new TeamEntity();
         teamEntity.setName(name);
         teamEntity.setPlayers(Collections.singletonList(captain));
         entityManager.persist(teamEntity);
-        this.entityManager.getTransaction().commit();
     }
 
     @Override

@@ -16,18 +16,17 @@ import java.util.List;
 public class AddTeamDto {
 
     @NotNull
-    private long userId;
+    private long id;
 
     @NotNull
     @Size(min = 3, max = 30)
-    private String name;
+    private String teamName;
 
     @NotNull
-    @Size(min = 9, max = 30)
     private Discipline discipline;
 
     @NotNull
     @NotEmpty
+    private List< PlayerDto> players;
 
-    private List<@Valid PlayerDto> players;
 }

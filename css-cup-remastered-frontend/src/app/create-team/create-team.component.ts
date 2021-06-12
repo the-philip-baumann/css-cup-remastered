@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthService} from "../service/auth/auth.service";
 
 @Component({
   selector: 'app-create-team',
@@ -23,23 +24,19 @@ export class CreateTeamComponent implements OnInit {
   }
 
   team: TeamAddDto;
+  displayError: boolean
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
+    this.displayError = false;
   }
 
 
   async ngOnInit(): Promise<void> {
     this.teamView.playerSolo = await this.http.get<PlayerInfoDto[]>(environment.remote + "player/solo").toPromise()
-    console.log(this.teamView.playerSolo)
-  }
-
-  setDiscipline(): void {
-    this.teamView.discipline = "FOOTBALL"
   }
 
   addPlayerToTeam(player: PlayerInfoDto): void {
     let index = this.teamView.playerSolo.indexOf(player, 0)
-    console.log(index);
     this.teamView.playerSolo.splice(index, 1)
     this.teamView.playerTeam.push(player)
   }
@@ -52,12 +49,24 @@ export class CreateTeamComponent implements OnInit {
 
   async submit(): Promise<void> {
     this.team = new TeamAddDto()
-    this.team.teanName = this.teamView.teamName
+    this.team.id = this.authService.user.id
+    this.team.teamName = this.teamView.teamName
     this.team.discipline = this.teamView.discipline
     this.team.players = this.teamView.playerTeam.filter(p => p.id)
 
-    await this.http.post<void>(environment.remote + "team/add", this.team).toPromise()
-    await this.router.navigate(['/team-uebersicht'])
+    if (this.team.teamName.length > 3 && this.team.teamName.length < 30) {
+
+      console.log(this.team)
+      console.log(this.authService.user)
+
+      await this.http.post<void>(environment.remote + "team/add", this.team).toPromise()
+      console.log('test')
+      await this.router.navigate(['/team-uebersicht'])
+    } else {
+      this.displayError = true;
+    }
+
+
   }
 
   toggleDropDown() {

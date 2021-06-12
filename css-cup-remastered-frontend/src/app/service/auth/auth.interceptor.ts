@@ -14,7 +14,6 @@ export class AuthInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('interceptor')
     return from(this.authService.verifyAndReturnJwtContent()).pipe(
       map((res: JwtContentDto) => {
         if (res) {
@@ -28,7 +27,7 @@ export class AuthInterceptor {
         return next.handle(clonedRequest).pipe(tap(() => {
         }, (e) => {
           if (e instanceof HttpErrorResponse && (e.status === 401 || e.status === 403)) {
-            this.router.navigate(['/auth/login']);
+            // this.router.navigate(['/auth/login']);
           }
           return;
         }));

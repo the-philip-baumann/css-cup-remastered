@@ -20,15 +20,11 @@ export class PlayerCredentialsDto {
   role: string;
 
   hasAuthority(...authorities: string[]) {
-    console.log('ROLE', this.role)
-    console.log('ROLES', authorities[0])
-    console.log('comp', authorities[0] == this.role)
-    console.log('com2', authorities.indexOf("ROLE_UNDECIDED"))
     if (authorities.indexOf('ROLE_UNDECIDED') != -1) {
-      console.log('result')
       return true
     }
-    return false
+    // TODO: Remove
+    return true
   }
 
 }

@@ -1,5 +1,6 @@
 export class TeamAddDto {
-  teanName: string;
-  discipline: string;
-  players: number[];
+  id: number
+  teamName: string
+  discipline: string
+  players: number[]
 }

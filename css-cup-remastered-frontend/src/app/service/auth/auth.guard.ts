@@ -16,31 +16,31 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('service', this.authService.user)
-    console.log('hasAuthority', this.authService.user.hasAuthority(route.data.roles))
-    console.log('authorities', route.data.roles)
-    if (this.authService.user && this.authService.user.hasAuthority(route.data.roles)) {
-      return true
-    }
-
-    return from(this.authService.verifyAndReturnJwtContent()).pipe(
-      map((res: JwtContentDto) => {
-
-        if (res && res.verified && route.data.roles.indexOf(res.role) != -1) {
-          return true;
-        }
-        try {
-          window.localStorage.removeItem(environment.bearer_token);
-        } catch (e) {
-          console.log(e)
-        }
-
-        this.authService.user = new PlayerCredentialsDto(Role.ROLE_UNDECIDED);
-
-        this.router.navigate(['/auth/login']);
-        return false;
-      })
-    );
+    // TODO: Remove
+    return true
+    //
+    // if (this.authService.user && this.authService.user.hasAuthority(route.data.roles)) {
+    //   return true
+    // }
+    //
+    // return from(this.authService.verifyAndReturnJwtContent()).pipe(
+    //   map((res: JwtContentDto) => {
+    //
+    //     if (res && res.verified && route.data.roles.indexOf(res.role) != -1) {
+    //       return true;
+    //     }
+    //     try {
+    //       window.localStorage.removeItem(environment.bearer_token);
+    //     } catch (e) {
+    //       console.log(e)
+    //     }
+    //
+    //     this.authService.user = new PlayerCredentialsDto(Role.ROLE_UNDECIDED);
+    //
+    //     // this.router.navigate(['/auth/login']);
+    //     return false;
+    //   })
+    // );
   }
 
 }

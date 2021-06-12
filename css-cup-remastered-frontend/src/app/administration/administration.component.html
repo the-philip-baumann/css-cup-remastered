@@ -1,8 +1,8 @@
 <main class="content">
   <div class="search-bar">
 
-    <input type="text" class="search-bar">
-    <button type="button" class="search-button">Suchen</button>
+    <input type="text" class="search-bar" [(ngModel)]="needle">
+    <button type="button" class="search-button" (click)="search()">Suchen</button>
   </div>
   <div class="participant-table">
     <div class="table-header">
@@ -42,7 +42,6 @@
         {{player.team != null ? player.team.name : ''}}
       </div>
       <div class="table-col-toolbar boxing">
-        <i class="far fa-edit" (click)="edit()"></i>
         <i class="far fa-trash-alt" (click)="delete(player)"></i>
       </div>
     </div>

@@ -5,9 +5,6 @@ import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.TeamDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
-import ch.css.lernende.csscupremasteredbackend.model.Discipline;
-import ch.css.lernende.csscupremasteredbackend.model.Role;
-import ch.css.lernende.csscupremasteredbackend.model.TeamModel;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
@@ -60,11 +57,11 @@ public class TeamService {
     public void addTeam(AddTeamDto addTeamDto) throws IllegalParameterException, SQLException {
         //TODO: Remove teamp captain and implement real user
 
-        Optional<PlayerEntity> playerEntity = this.playerRepository.findById(addTeamDto.getUserId());
+        Optional<PlayerEntity> playerEntity = this.playerRepository.findById(addTeamDto.getId());
         playerEntity.orElseThrow(IllegalParameterException::new);
 
-        teamRepository.insertTeam(addTeamDto.getName(), addTeamDto.getDiscipline(), playerEntity.get());
-        TeamEntity teamEntity = teamRepository.findByName(addTeamDto.getName());
+        teamRepository.insertTeam(addTeamDto.getTeamName(), addTeamDto.getDiscipline(), playerEntity.get());
+        TeamEntity teamEntity = teamRepository.findByName(addTeamDto.getTeamName());
 
         for (PlayerDto entity : addTeamDto.getPlayers()) {
             playerRepository.addTeamToPlayer(teamEntity, entity.getId());

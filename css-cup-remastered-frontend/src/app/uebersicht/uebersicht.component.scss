@@ -1,6 +1,14 @@
 $default-team-colour:  #fcfcfc;
 $player-of-team-colour: #32cc27;
 
+h3 {
+  display: inline;
+}
+
+.team-delete {
+  float: right;
+}
+
 .content {
   width: 80%;
   height: 1000px;

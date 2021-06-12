@@ -51,7 +51,7 @@ public class TeamController {
     }
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createTeam(@RequestBody @Valid AddTeamDto addTeamDto) {
+    public ResponseEntity createTeam(@RequestBody AddTeamDto addTeamDto) {
         try {
             teamService.addTeam(addTeamDto);
             return ResponseEntity.ok().build();

@@ -66,4 +66,9 @@ export class UebersichtComponent implements OnInit {
     await this.http.post(environment.remote + 'team/join/' + team.id, {}).toPromise()
     await this.fetchAllTeams(true);
   }
+
+  async deleteTeam(team: TeamDto): Promise<void> {
+    await this.http.delete(environment.remote + 'team/delete/' + team.id, {}).toPromise();
+    await this.fetchAllTeams(true);
+  }
 }
