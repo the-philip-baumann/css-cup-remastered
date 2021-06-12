@@ -41,6 +41,7 @@ public class PlayerController {
         }
     }
 
+    // TODO: Remove
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getSinglePlayer(@PathVariable Optional<Long> id) {
         try {

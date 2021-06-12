@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary right-sided" (click)="redirectToCreateTeamView()">Team erstellen</button>
   </div>
   <div class="teams">
-    <div class="team" *ngFor="let team of teams">
+    <div class="team" *ngFor="let team of teams" [ngClass]="{'part-of-team': team.isUserPartOfTeam}">
       <div class="team-header">
         <h3 class="team-title">{{team.name}}</h3>
       </div>

@@ -43,10 +43,14 @@ public class JwtTokenUtil {
 
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withClaim("username", playerDto.getEmail())
+                .withClaim("id", playerDto.getId())
+                .withClaim("firstname", playerDto.getFirstname())
+                .withClaim("lastname", playerDto.getLastname())
+                .withClaim("email", playerDto.getEmail())
+                .withClaim("discipline", playerDto.getDiscipline().getValue())
+                .withClaim("function", playerDto.getFunction())
                 .withClaim("expiryDate", calendar.getTime())
-//                .withClaim("role", playerDto.getRole().name())
-                .withClaim("role", "ROLE_ADMIN")
+                .withClaim("role", playerDto.getRole().name())
                 .sign(ALGORITHM);
     }
 }

@@ -12,9 +12,9 @@
   <div class="login">
     <div class="credentials">
       <h2 class="login-title">Sign-In</h2>
-      <input type="text" class="input" placeholder="email">
-      <input type="text" class="input" placeholder="passowrd">
-      <button class="btn-register coloring-login">Login</button>
+      <input type="text" class="input" placeholder="email" [(ngModel)]="loginCredentials.email">
+      <input type="text" class="input" placeholder="passowrd" [(ngModel)]="loginCredentials.password">
+      <button class="btn-register coloring-login" (click)="login()">Login</button>
     </div>
   </div>
 

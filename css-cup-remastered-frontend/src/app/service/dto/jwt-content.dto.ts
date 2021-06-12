@@ -1,5 +1,12 @@
 export interface JwtContentDto {
-  token: string;
-  verified: boolean;
+  id: number
+  firstname: string
+  lastname: string
+  function: string
+  discipline: string
+  email: string
+  token: string
+  verified: boolean
   exp: number;
+  role: string
 }

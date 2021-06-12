@@ -7,13 +7,14 @@ import {JwtContentDto} from "../dto/jwt-content.dto";
 import {Router} from "@angular/router";
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class AuthInterceptor {
 
   constructor(private authService: AuthService, private router: Router) {
 
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log('interceptor')
     return from(this.authService.verifyAndReturnJwtContent()).pipe(
       map((res: JwtContentDto) => {
         if (res) {
@@ -25,8 +26,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
       }), flatMap((clonedRequest) => {
         return next.handle(clonedRequest).pipe(tap(() => {
-        }, (err) => {
-          if (err instanceof HttpErrorResponse && err.status === 401) {
+        }, (e) => {
+          if (e instanceof HttpErrorResponse && (e.status === 401 || e.status === 403)) {
             this.router.navigate(['/auth/login']);
           }
           return;

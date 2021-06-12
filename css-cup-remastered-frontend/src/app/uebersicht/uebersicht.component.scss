@@ -1,3 +1,6 @@
+$default-team-colour:  #fcfcfc;
+$player-of-team-colour: #32cc27;
+
 .content {
   width: 80%;
   height: 1000px;
@@ -55,6 +58,9 @@ button {
   margin-bottom: 10px;
 }
 
+div.part-of-team {
+  background: #32cc27;
+}
 
 .team-body:first-child {
   border-top: 1px solid black;

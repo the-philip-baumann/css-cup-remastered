@@ -6,6 +6,7 @@ import ch.css.lernende.csscupremasteredbackend.model.Role;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -64,9 +65,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 ).and();
 
         http.authorizeRequests()
-                .regexMatchers("/team/all").permitAll()
-                .regexMatchers("/player/all").hasRole("ADMIN");
-//                .regexMatchers("/team/all").permitAll();
+                .regexMatchers(HttpMethod.GET, "/team/all").hasAnyRole("ADMIN", "CAPTAIN", "PARTICIPANT")
+                .antMatchers(HttpMethod.GET, "/team/**").hasRole("ADMIN")
+                .regexMatchers(HttpMethod.POST, "/team/add").hasAnyRole("ADMIN", "CAPTAIN")
+                .antMatchers(HttpMethod.DELETE, "/team/delete/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/team/join/**").hasAnyRole("PARTICIPANT")
+                .regexMatchers(HttpMethod.GET, "/player/all").hasAnyRole("ADMIN")
+                .regexMatchers(HttpMethod.GET, "/player/solo").hasAnyRole("ADMIN", "CAPTAIN")
+                .antMatchers(HttpMethod.DELETE, "/player/**").hasRole("ADMIN")
+                .regexMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .regexMatchers(HttpMethod.POST, "/auth/register").permitAll()
+        .anyRequest().permitAll();
 
         http.addFilterBefore(
                 requestInterceptor,

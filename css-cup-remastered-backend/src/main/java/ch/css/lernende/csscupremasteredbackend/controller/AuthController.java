@@ -1,5 +1,6 @@
 package ch.css.lernende.csscupremasteredbackend.controller;
 
+import ch.css.lernende.csscupremasteredbackend.dto.AuthStateDto;
 import ch.css.lernende.csscupremasteredbackend.dto.LoginDto;
 import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.dto.RegisterDto;
@@ -41,26 +42,28 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> register(@RequestBody @Validated RegisterDto registerDto) {
+    @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AuthStateDto> register(@RequestBody @Validated RegisterDto registerDto) {
         try {
-            return ResponseEntity.ok(this.authService.register(RegisterDtoToUserModel.map(registerDto)));
+            String jwt = this.authService.register(RegisterDtoToUserModel.map(registerDto));
+            return ResponseEntity.ok(new AuthStateDto(jwt, null));
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalParameterException | SQLException e) {
-            return ResponseEntity.status(500).body("Failed to encrypt password. Please try later");
+            return ResponseEntity.status(500).body(new AuthStateDto(null, e.getMessage()));
         }
     }
 
-    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AuthStateDto> login(@RequestBody LoginDto loginDto) {
         try {
             Authentication authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 
             PlayerDto playerDto = PlayerMapper.userEntityToUserDto((PlayerEntity) authentication.getPrincipal());
+            String jwt = jwtTokenUtil.createToken(playerDto);
 
-            return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.createToken(playerDto)).build();
+            return ResponseEntity.ok().body(new AuthStateDto(jwt, null));
         } catch (Exception e) {
-            return ResponseEntity.status(401).body("Email and password do not match with any registered user");
+            return ResponseEntity.status(401).body(new AuthStateDto(null, e.getMessage()));
         }
     }
 

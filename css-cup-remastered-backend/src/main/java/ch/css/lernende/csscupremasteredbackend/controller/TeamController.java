@@ -62,17 +62,18 @@ public class TeamController {
     // TODO: Possibly Remove
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
+        System.out.println("id = " + id);
         teamService.deleteTeam(id);
         return ResponseEntity.ok("Team was deleted");
     }
 
     //TODO: Remove
-    @PostMapping(path = "/rename", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity renameTeam(@RequestBody RenameTeamDto renameTeam) {
-        System.out.println(renameTeam.getName());
-        teamService.renameTeam(renameTeam.getId(), renameTeam.getName());
-        return ResponseEntity.ok("Team was renamed to: " + renameTeam.getName());
-    }
+//    @PostMapping(path = "/rename", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity renameTeam(@RequestBody RenameTeamDto renameTeam) {
+//        System.out.println(renameTeam.getName());
+//        teamService.renameTeam(renameTeam.getId(), renameTeam.getName());
+//        return ResponseEntity.ok("Team was renamed to: " + renameTeam.getName());
+//    }
 
     @PostMapping(path = "/join/{id}")
     public ResponseEntity joinTeam(@PathVariable Optional<Long> id) {

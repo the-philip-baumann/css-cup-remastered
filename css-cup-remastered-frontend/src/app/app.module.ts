@@ -7,12 +7,14 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { UebersichtComponent } from './uebersicht/uebersicht.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AuthComponent } from './auth/auth.component';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CreateTeamComponent } from './create-team/create-team.component';
 import {FormsModule} from "@angular/forms";
 import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button/discipline-switch-button.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import {AuthInterceptor} from "./service/auth/auth.interceptor";
+import {AuthGuard} from "./service/auth/auth.guard";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,14 @@ import { RegisterComponent } from './register/register.component';
         HttpClientModule,
         FormsModule,
     ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
