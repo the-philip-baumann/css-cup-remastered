@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +51,7 @@ public class TeamController {
     }
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createTeam(@RequestBody AddTeamDto addTeamDto) {
+    public ResponseEntity createTeam(@RequestBody @Valid AddTeamDto addTeamDto) {
         try {
             teamService.addTeam(addTeamDto);
             return ResponseEntity.ok().build();
@@ -62,9 +63,12 @@ public class TeamController {
     // TODO: Possibly Remove
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
-        System.out.println("id = " + id);
-        teamService.deleteTeam(id);
-        return ResponseEntity.ok("Team was deleted");
+        try {
+            teamService.deleteTeam(id);
+            return ResponseEntity.ok("Team was deleted");
+        } catch (IllegalParameterException e) {
+            return ResponseEntity.status(400).body("Bad Request");
+        }
     }
 
     //TODO: Remove

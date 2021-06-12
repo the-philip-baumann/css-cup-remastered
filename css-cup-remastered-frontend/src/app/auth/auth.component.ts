@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth/auth.service";
+import {AuthState} from "../service/auth/auth.state";
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,11 @@ export class AuthComponent implements OnInit {
       return
     }
 
-    await this.authService.login({email: this.loginCredentials.email, password: this.loginCredentials.password})
+    let state: AuthState = await this.authService.login({email: this.loginCredentials.email, password: this.loginCredentials.password})
+
+    if (state.ok) {
+      await this.router.navigate([''])
+    }
+
   }
 }

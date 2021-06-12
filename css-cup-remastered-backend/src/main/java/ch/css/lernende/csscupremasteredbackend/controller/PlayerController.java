@@ -41,15 +41,15 @@ public class PlayerController {
         }
     }
 
-    // TODO: Remove
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getSinglePlayer(@PathVariable Optional<Long> id) {
-        try {
-            return ResponseEntity.ok(playerService.getSinglePlayer(id));
-        } catch (IllegalParameterException | NoResultsFoundException e) {
-            return ResponseEntity.status(400).body("No Results found");
-        }
-    }
+//    // TODO: Remove
+//    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity getSinglePlayer(@PathVariable Optional<Long> id) {
+//        try {
+//            return ResponseEntity.ok(playerService.getSinglePlayer(id));
+//        } catch (IllegalParameterException | NoResultsFoundException e) {
+//            return ResponseEntity.status(400).body("No Results found");
+//        }
+//    }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deleteSinglePlayer(@PathVariable Optional<Long> id) {
@@ -61,14 +61,14 @@ public class PlayerController {
         }
     }
 
-    @PutMapping(path = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity editPlayer(@PathVariable Optional<Long> id, @RequestBody Optional<PlayerDto> playerDto) {
-        try {
-            playerService.editPlayer(id, playerDto);
-            return ResponseEntity.ok().build();
-        } catch (IllegalParameterException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+//    @PutMapping(path = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity editPlayer(@PathVariable Optional<Long> id, @RequestBody Optional<PlayerDto> playerDto) {
+//        try {
+//            playerService.editPlayer(id, playerDto);
+//            return ResponseEntity.ok().build();
+//        } catch (IllegalParameterException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
 }

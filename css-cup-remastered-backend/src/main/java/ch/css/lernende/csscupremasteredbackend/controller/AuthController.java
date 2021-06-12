@@ -26,6 +26,9 @@ import javax.annotation.security.RolesAllowed;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.Set;
+
+import javax.validation.*;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -34,6 +37,7 @@ public class AuthController {
     private AuthService authService;
     private final JwtTokenUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
+    private Validator validator;
 
     @Autowired
     public AuthController(AuthService authService, JwtTokenUtil jwtTokenUtil, AuthenticationManager authenticationManager) {
@@ -42,8 +46,12 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AuthStateDto> register(@RequestBody @Validated RegisterDto registerDto) {
+    @PostMapping(
+            path = "/register",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<AuthStateDto> register(@RequestBody @Valid RegisterDto registerDto) {
         try {
             String jwt = this.authService.register(RegisterDtoToUserModel.map(registerDto));
             return ResponseEntity.ok(new AuthStateDto(jwt, null));
@@ -52,8 +60,12 @@ public class AuthController {
         }
     }
 
-    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AuthStateDto> login(@RequestBody LoginDto loginDto) {
+    @PostMapping(
+            path = "/login",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<AuthStateDto> login(@RequestBody @Valid LoginDto loginDto) {
         try {
             Authentication authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));

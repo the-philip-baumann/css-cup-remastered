@@ -71,9 +71,9 @@ public class TeamService {
         }
     }
 
-    public void deleteTeam(Optional<Long> id) throws IllegalArgumentException {
+    public void deleteTeam(Optional<Long> id) throws IllegalParameterException {
         if(id.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalParameterException();
         }
 
         teamRepository.deleteById(id.get());

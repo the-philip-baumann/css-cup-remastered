@@ -9,7 +9,7 @@ import { AdministrationComponent } from './administration/administration.compone
 import { AuthComponent } from './auth/auth.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CreateTeamComponent } from './create-team/create-team.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DisciplineSwitchButtonComponent } from './util/discipline-switch-button/discipline-switch-button.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -33,6 +33,7 @@ import {AuthGuard} from "./service/auth/auth.guard";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
     ],
   providers: [
     AuthGuard,
