@@ -46,16 +46,20 @@
       </p>
     </div>
   </div>
-
-
   <div class="rules content-container">
-    <div class="content-title">
-      <h2>Spielregeln Fussball</h2>
-      <hr>
-    </div>
-    <ul class="indent">
-      <li *ngFor="let rule of footballRules"> {{rule}}</li>
-    </ul>
+
+      <div class="content-title">
+        <h2>Spielregeln Fussball</h2>
+        <hr>
+      </div>
+      <ul class="indent content-image-dimensions">
+        <li *ngFor="let rule of footballRules"> {{rule}}</li>
+      </ul>
+
+      <div class="image-container">
+        <img src="assets/ball.jpg" class="image-dimensions">
+      </div>
+
 
     <div class="content-title content-container">
       <h2>Spielregeln Volleyball</h2>
@@ -64,6 +68,10 @@
     <ul class="indent">
       <li *ngFor="let rule of volleyballRules">{{rule}}</li>
     </ul>
+    <div class="image-container">
+      <img src="assets/volleyball.jpg" class="image-dimensions">
+    </div>
+
   </div>
 
   <div class="content-container google-maps">

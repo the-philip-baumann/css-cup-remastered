@@ -53,15 +53,16 @@ button.search-button {
 
   .search-bar {
     width: 70%;
-
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     border: none;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
   }
 
   .search-button {
-    padding-top: 4px;
+    padding-top: 6px;
     padding-bottom: 8px;
     font-size: 20px;
     border: none;
