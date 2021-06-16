@@ -1,3 +1,5 @@
+import {environment} from "../../../environments/environment";
+
 export class PlayerCredentialsDto {
 
 
@@ -19,12 +21,6 @@ export class PlayerCredentialsDto {
   discipline: string
   role: string;
 
-  hasAuthority(...authorities: string[]) {
-    if (authorities.indexOf('ROLE_UNDECIDED') != -1) {
-      return true
-    }
-    // TODO: Remove
-    return true
-  }
+
 
 }

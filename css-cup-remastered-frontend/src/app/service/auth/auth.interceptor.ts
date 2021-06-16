@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {from, Observable} from "rxjs";
-import {flatMap, map, tap} from "rxjs/operators";
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
 import {AuthService} from "./auth.service";
 import {JwtContentDto} from "../dto/jwt-content.dto";
 import {Router} from "@angular/router";
@@ -14,27 +14,22 @@ export class AuthInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return from(this.authService.verifyAndReturnJwtContent()).pipe(
-      map((res: JwtContentDto) => {
-        if (res) {
-          return req.clone({
-            headers: req.headers.set('Authorization', 'Bearer ' + res.token)
-          });
-        }
-        return req;
+    let res: JwtContentDto = this.authService.verifyAndReturnJwtContent()
+    let clonedRequest = req;
 
-      }), flatMap((clonedRequest) => {
-        return next.handle(clonedRequest).pipe(tap(() => {
-        }, (e) => {
-          if (e instanceof HttpErrorResponse && (e.status === 401 || e.status === 403)) {
-            // this.router.navigate(['/auth/login']);
-          }
-          return;
-        }));
-      })
-    );
+    if (res && res.verified) {
+      clonedRequest = req.clone({
+        headers: req.headers.set('Authorization', 'Bearer ' + res.token)
+      });
+    }
+
+    return next.handle(clonedRequest).pipe(tap(() => {
+    }, (e) => {
+      if (e instanceof HttpErrorResponse && (e.status === 401 || e.status === 403)) {
+        // this.router.navigate(['/auth/login']);
+        console.log('Unauthorized')
+      }
+      return;
+    }))
   }
-
-
-
 }

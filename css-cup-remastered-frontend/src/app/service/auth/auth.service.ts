@@ -1,4 +1,4 @@
-import {Inject, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {JwtContentDto} from "../dto/jwt-content.dto";
@@ -7,6 +7,7 @@ import {RegisterDto} from "../dto/register.dto";
 import {LoginResponseDto} from "../dto/login-response.dto";
 import {AuthState} from "./auth.state";
 import {PlayerCredentialsDto} from "../dto/player-credentials.dto";
+import {Role} from "./role.enum";
 
 @Injectable({providedIn: "root"})
 export class AuthService {
@@ -16,7 +17,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.localStorage = window.localStorage;
-    this.user = new PlayerCredentialsDto('ROLE_UNDECIDED')
   }
 
   public async login(loginDto: LoginRequestDto): Promise<AuthState> {
@@ -34,6 +34,7 @@ export class AuthService {
       this.localStorage.setItem(environment.bearer_token, response.jwt)
       const tokenContent: JwtContentDto = await this.verifyAndReturnJwtContent()
       this.user = this.mapTokenContentToUser(tokenContent)
+      console.log('setToken', this.user)
     }
 
     return authState;
@@ -57,11 +58,11 @@ export class AuthService {
     return authState
   }
 
-  public async verifyAndReturnJwtContent(): Promise<any> {
+  verifyAndReturnJwtContent(): JwtContentDto {
     let bearerToken
 
     try {
-      bearerToken = await this.localStorage.getItem(environment.bearer_token)
+      bearerToken = this.localStorage.getItem(environment.bearer_token)
     } catch (e) {
       console.error(e)
     }
@@ -89,12 +90,37 @@ export class AuthService {
   }
 
   mapTokenContentToUser(tokenContent: JwtContentDto) {
-  return new PlayerCredentialsDto(tokenContent.role, tokenContent.id, tokenContent.firstname, tokenContent.lastname, tokenContent.email, tokenContent.function, tokenContent.discipline);
+    return new PlayerCredentialsDto(tokenContent.role, tokenContent.id, tokenContent.firstname, tokenContent.lastname, tokenContent.email, tokenContent.function, tokenContent.discipline);
   }
 
   public resolveJwtPayload(jwt: string): any {
     const base64Url = jwt.split('.')[1];
     const base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(atob(base64));
+  }
+
+  hasAuthority(...authorities: string[]) {
+    let jwt: JwtContentDto
+    if (!this.user) {
+      jwt = this.verifyAndReturnJwtContent()
+      if (jwt.verified) {
+        this.user = new PlayerCredentialsDto(jwt.role, jwt.id, jwt.firstname, jwt.lastname, jwt.email, jwt.function, jwt.discipline)
+      } else {
+        this.user = null
+      }
+    }
+
+    if (!this.user) {
+      console.log(authorities, Role.ROLE_UNDECIDED)
+      return authorities.indexOf(Role.ROLE_UNDECIDED) != -1
+    }
+
+    return authorities.indexOf(this.user.role) != -1
+  }
+
+  logout() {
+    window.localStorage.removeItem(environment.bearer_token)
+    this.user = null
+    location.reload()
   }
 }

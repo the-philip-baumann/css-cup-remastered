@@ -18,32 +18,32 @@ const routes: Routes = [
   {
     path: 'administration',
     component: AdministrationComponent,
-    // canActivate: [AuthGuard],
-    // data: {roles: [Role.ROLE_ADMIN]}
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ROLE_ADMIN]}
   },
   {
     path: 'uebersicht',
     component: UebersichtComponent,
-    // canActivate: [AuthGuard],
-    // data: {roles: [Role.ROLE_PARTICIPANT, Role.ROLE_CAPTAIN, Role.ROLE_ADMIN]}
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ROLE_PARTICIPANT, Role.ROLE_CAPTAIN, Role.ROLE_ADMIN]}
   },
   {
     path: 'team-create',
     component: CreateTeamComponent,
-    // canActivate: [AuthGuard],
-    // data: {roles: [Role.ROLE_CAPTAIN, Role.ROLE_ADMIN]}
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ROLE_CAPTAIN, Role.ROLE_ADMIN]}
   },
   {
     path: 'auth/login',
     component: AuthComponent,
-    // canActivate: [AuthGuard],
-    // data: {roles: [Role.ROLE_UNDECIDED]}
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ROLE_UNDECIDED]}
   },
   {
     path: 'auth/register',
     component: RegisterComponent,
-    // canActivate: [AuthGuard],
     // data: {roles: [Role.ROLE_UNDECIDED]}
+    // canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' }
 ];
