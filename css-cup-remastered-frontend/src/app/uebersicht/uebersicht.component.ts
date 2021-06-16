@@ -17,6 +17,8 @@ export class UebersichtComponent implements OnInit {
   teamsVolleyball: TeamDto[]
   teamsFootball: TeamDto[]
 
+  isPartOfATeam = false;
+
   constructor(private http: HttpClient, private router: Router, public authService: AuthService) { }
 
   async ngOnInit(): Promise<void> {
@@ -26,12 +28,14 @@ export class UebersichtComponent implements OnInit {
   async fetchAllTeams(isFootballCurrentDiscipline: boolean): Promise<void> {
     this.teamsVolleyball = []
     this.teamsFootball = []
+    this.isPartOfATeam = false;
     let teams = await this.http.get<TeamDto[]>(environment.remote + 'team/all').toPromise()
     teams.filter(team => {
 
       team.players.filter(player => {
         if (player.id == this.authService.user.id) {
           team.isUserPartOfTeam = true
+          this.isPartOfATeam = true;
         }
       })
 

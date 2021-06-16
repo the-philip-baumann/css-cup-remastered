@@ -38,13 +38,13 @@ public class PlayerEntity implements UserDetails, Serializable {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private TeamEntity playerTeam;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private RoleEntity playerRole;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private DisciplineEntity playerDiscipline;
 
     private final boolean enabled = true;

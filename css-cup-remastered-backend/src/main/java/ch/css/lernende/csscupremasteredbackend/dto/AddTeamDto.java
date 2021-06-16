@@ -27,6 +27,6 @@ public class AddTeamDto {
 
     @NotNull
     @NotEmpty
-    private List< PlayerDto> players;
+    private List<Long> players;
 
 }

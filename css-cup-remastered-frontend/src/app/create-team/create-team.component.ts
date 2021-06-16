@@ -49,18 +49,17 @@ export class CreateTeamComponent implements OnInit {
 
   async submit(): Promise<void> {
     this.team = new TeamAddDto()
-    this.team.id = this.authService.user.id
     this.team.teamName = this.teamView.teamName
     this.team.discipline = this.teamView.discipline
-    this.team.players = this.teamView.playerTeam.filter(p => p.id)
+    this.team.players = []
+    this.teamView.playerTeam.forEach(p => {
+      this.team.players.push(p.id)
+    })
+    this.team.players.push(this.authService.user.id)
 
-    if (this.team.teamName.length > 3 && this.team.teamName.length < 30) {
 
-      console.log(this.team)
-      console.log(this.authService.user)
-
+    if (this.team.teamName.length > 3 && this.team.teamName.length < 16) {
       await this.http.post<void>(environment.remote + "team/add", this.team).toPromise()
-      console.log('test')
       await this.router.navigate(['/team-uebersicht'])
     } else {
       this.displayError = true;

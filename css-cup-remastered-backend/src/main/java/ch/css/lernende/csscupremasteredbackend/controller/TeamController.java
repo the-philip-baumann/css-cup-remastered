@@ -24,7 +24,7 @@ import java.util.Optional;
 @RequestMapping(path = "/team")
 public class TeamController {
 
-    private TeamService teamService;
+    private final TeamService teamService;
 
     @Autowired
     public TeamController(TeamService teamService) {
@@ -37,19 +37,6 @@ public class TeamController {
         return ResponseEntity.ok(teams);
     }
 
-    //TODO: Remove
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity fetchTeam(@PathVariable Optional<Long> id) {
-        try {
-            TeamDto teamDto = teamService.fetchTeam(id);
-            return ResponseEntity.ok(teamDto);
-        } catch (NoResultsFoundException e) {
-            return ResponseEntity.ok("No Results found for id: " + id);
-        } catch (IllegalParameterException e) {
-            return ResponseEntity.status(400).body("Bad request");
-        }
-    }
-
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createTeam(@RequestBody AddTeamDto addTeamDto) {
         try {
@@ -60,7 +47,6 @@ public class TeamController {
         }
     }
 
-    // TODO: Possibly Remove
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
         try {
@@ -70,14 +56,6 @@ public class TeamController {
             return ResponseEntity.status(400).body("Bad Request");
         }
     }
-
-    //TODO: Remove
-//    @PostMapping(path = "/rename", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity renameTeam(@RequestBody RenameTeamDto renameTeam) {
-//        System.out.println(renameTeam.getName());
-//        teamService.renameTeam(renameTeam.getId(), renameTeam.getName());
-//        return ResponseEntity.ok("Team was renamed to: " + renameTeam.getName());
-//    }
 
     @PostMapping(path = "/join/{id}")
     public ResponseEntity joinTeam(@PathVariable Optional<Long> id) {

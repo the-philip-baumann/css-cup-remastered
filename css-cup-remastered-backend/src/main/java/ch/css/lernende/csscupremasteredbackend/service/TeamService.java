@@ -6,8 +6,10 @@ import ch.css.lernende.csscupremasteredbackend.dto.TeamDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
 import ch.css.lernende.csscupremasteredbackend.model.mapper.TeamMapper;
+import ch.css.lernende.csscupremasteredbackend.persistence.DisciplineEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.TeamEntity;
 import ch.css.lernende.csscupremasteredbackend.persistence.PlayerEntity;
+import ch.css.lernende.csscupremasteredbackend.repository.repo.discipline.DisciplineRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.player.PlayerRepository;
 import ch.css.lernende.csscupremasteredbackend.repository.repo.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,13 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
     private final PlayerRepository playerRepository;
+    private final DisciplineRepository disciplineRepository;
 
     @Autowired
-    public TeamService(TeamRepository teamRepository, PlayerRepository playerRepository) {
+    public TeamService(TeamRepository teamRepository, PlayerRepository playerRepository, DisciplineRepository disciplineRepository) {
         this.teamRepository = teamRepository;
         this.playerRepository = playerRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public List<TeamDto> fetchAll() {
@@ -55,16 +59,19 @@ public class TeamService {
     }
 
     public void addTeam(AddTeamDto addTeamDto) throws IllegalParameterException, SQLException {
-        //TODO: Remove teamp captain and implement real user
 
-        Optional<PlayerEntity> playerEntity = this.playerRepository.findById(addTeamDto.getId());
-        playerEntity.orElseThrow(IllegalParameterException::new);
+        Optional<DisciplineEntity> disciplineEntity = disciplineRepository.findByName(addTeamDto.getDiscipline().name());
 
-        teamRepository.insertTeam(addTeamDto.getTeamName(), addTeamDto.getDiscipline(), playerEntity.get());
+        if (disciplineEntity.isEmpty()) {
+            throw new IllegalParameterException();
+        }
+
+        teamRepository.insertTeam(addTeamDto.getTeamName(), disciplineEntity.get());
         TeamEntity teamEntity = teamRepository.findByName(addTeamDto.getTeamName());
 
-        for (PlayerDto entity : addTeamDto.getPlayers()) {
-            playerRepository.addTeamToPlayer(teamEntity, entity.getId());
+        for (long id : addTeamDto.getPlayers()) {
+            Optional<PlayerEntity> playerEntity = playerRepository.findById(id);
+            playerRepository.addTeamToPlayer(teamEntity, playerEntity.orElseThrow(IllegalParameterException::new).getId());
         }
     }
 
@@ -73,11 +80,18 @@ public class TeamService {
             throw new IllegalParameterException();
         }
 
-        teamRepository.deleteById(id.get());
-    }
+        Optional<TeamEntity> teamEntity = teamRepository.findById(id.get());
 
-    public void renameTeam(long id, String name) {
-        // TODO: Implement
+        if (teamEntity.isEmpty()) {
+            throw new IllegalParameterException();
+        }
+
+        teamEntity.get().getPlayers().stream().parallel().forEach(playerEntity -> {
+            playerEntity.setPlayerTeam(null);
+            playerRepository.save(playerEntity);
+        });
+
+        teamRepository.deleteById(id.get());
     }
 
     public void joinTeam(long userId, Optional<Long> id) throws IllegalParameterException {
