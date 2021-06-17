@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class PlayerMapper {
     public static PlayerDto userEntityToUserDto(PlayerEntity playerEntity) {
         return PlayerDto.builder()
+                .id(playerEntity.getId())
                 .firstname(playerEntity.getFirstname())
                 .lastname(playerEntity.getLastname())
                 .function(playerEntity.getFunction())

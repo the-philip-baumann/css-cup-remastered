@@ -18,6 +18,11 @@ button.search-button {
 
 
 @media screen and (max-width: 400px) {
+
+  .search-button {
+    background: deepskyblue;
+  }
+
   .search-bar {
     margin-left: 5%;
     margin-right: 5%;
@@ -25,6 +30,16 @@ button.search-button {
     border: none;
     border-bottom-left-radius: 50px;
     border-top-left-radius: 50px;
+  }
+
+  h3.title {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  div.boxing {
+    font-size: 14px;
+    margin-top: 10px;
   }
 
   input.search-bar {
@@ -35,10 +50,106 @@ button.search-button {
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
   }
+
+  .table-col-role {
+    display: none;
+  }
+
+  .table-col-function {
+    display: none;
+  }
+
+  .table-col-team {
+    display: none;
+  }
+
+  div.table-colum {
+    width: 100%;
+  }
+
+  div.table-header {
+    width: 100%;
+  }
+
+  div.table-col-firstname {
+    width: 40%;
+  }
+
+  div.table-col-lastname {
+    width: 40%;
+  }
+
+  div.table-col-toolbar {
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 401px) {
+
+  .search-button {
+    background: deepskyblue;
+  }
+
+  .search-bar {
+    text-align: center;
+    border: none;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+  }
+
+  h3.title {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  div.boxing {
+    font-size: 14px;
+  }
+
+  .search-button {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .table-col-role {
+    display: none;
+  }
+
+  .table-col-function {
+    display: none;
+  }
+
+  div.table-header {
+    width: 100%;
+  }
+
+  div.table-col-firstname {
+    width: 30%;
+  }
+
+  div.table-col-lastname {
+    width: 30%;
+  }
+
+  div.table-col-team {
+    width: 30%;
+  }
+
 }
 
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 900px) {
+
+  h3.title {
+    font-size: 20px;
+    margin-top: 15px;
+  }
+
+  div.boxing {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
   .content {
     margin-left: 10%;
     margin-right: 10%;
@@ -47,112 +158,95 @@ button.search-button {
   }
 
   .search-bar {
-    margin-left: 12.5%;
-  }
-
-
-  .search-bar {
     width: 70%;
-
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     border: none;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    margin-left: 7%;
   }
 
   .search-button {
-    padding-top: 4px;
+    padding-top: 6px;
     padding-bottom: 8px;
     font-size: 20px;
     border: none;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    width: 10%;
+    width: 20%;
     background-color: deepskyblue;
   }
-
-
-
-  .table-header {
-    display: flex;
-  }
-
-  .table-col-firstname {
-    width: 20%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .table-col-lastname {
-    width: 20%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .table-col-function {
-    width: 8%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .table-col-role {
-    width: 20%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .table-col-team {
-    width: 20%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .table-col-toolbar {
-    width: 15%;
-    text-align: center;
-    border-top-right-radius: 50px;
-    height: 50px;
-  }
-
-  .table-col-toolbar:first-child {
-    border-top-right-radius: 50px;
-  }
-
-  .table-col-firstname:first-child {
-    border-top-left-radius: 50px;
-  }
-
-  .table-body {
-    display: flex;
-    padding-bottom: 10px;
-  }
-
-  .table-body:nth-child(2n + 1) {
-    background-color: #abdaf5;
-  }
-
-  .padding {
-    padding-top: 20px;
-  }
-
-  .coloring {
-    background-color: deepskyblue;
-  }
-
-  i {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-
-  div.boxing {
-    height: 30px;
-    padding-top: 10px;
-    font-size: 20px;
-  }
-
 
 }
 
-@media screen and (min-width: 2000px) {
+.table-header {
+  display: flex;
+}
 
+.table-col-firstname {
+  width: 20%;
+  text-align: center;
+}
+
+.table-col-lastname {
+  width: 20%;
+  text-align: center;
+}
+
+.table-col-function {
+  width: 8%;
+  text-align: center;
+}
+
+.table-col-role {
+  width: 20%;
+  text-align: center;
+  height: 40px;
+}
+
+.table-col-team {
+  width: 20%;
+  text-align: center;
+}
+
+.table-col-toolbar {
+  width: 15%;
+  text-align: center;
+}
+
+//.table-col-toolbar:first-child {
+//  border-top-right-radius: 50px;
+//}
+//
+//.table-col-firstname:first-child {
+//  border-top-left-radius: 50px;
+//}
+
+.table-body {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.table-body:nth-child(2n + 1) {
+  background-color: #abdaf5;
+}
+
+.padding {
+  padding-top: 20px;
+}
+
+.coloring {
+  background-color: deepskyblue;
+}
+
+i {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+p {
+  margin: 0;
+  display: block;
 }

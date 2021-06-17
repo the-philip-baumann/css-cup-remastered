@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../service/auth/auth.service";
+import has = Reflect.has;
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
-
 }

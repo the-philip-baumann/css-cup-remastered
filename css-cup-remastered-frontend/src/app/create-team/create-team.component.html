@@ -1,5 +1,9 @@
 <main class="content col-md-6 offset-3">
-  <form class="create-team" (ngSubmit)="submit()">
+  <div class="alert alert-danger" *ngIf="displayError">
+    Teamname muss zwischen 4 und 15 Buchstaben sein.
+  </div>
+
+  <form class="create-team">
     <div class="form-group centered">
       <h1>{{teamView.teamName}}</h1>
     </div>
@@ -25,12 +29,13 @@
       </div>
     </div>
     <div class="players-container">
-      <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFromTeam(player)">
+      <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFrocmTeam(player)">
         {{player.firstname}} {{player.lastname}} {{player.function}} &#10004;
       </div>
     </div>
     <div class="form-group centered">
-      <button type="submit" class="btn btn-primary">Erstellen</button>
+      <button type="submit" class="btn btn-primary" (click)="submit()">Erstellen</button>
     </div>
   </form>
+
 </main>

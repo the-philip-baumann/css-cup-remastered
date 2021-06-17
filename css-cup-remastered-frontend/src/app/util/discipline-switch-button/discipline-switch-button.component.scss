@@ -10,7 +10,7 @@
 .btn-left {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   border-right: none;
   background: white;
 }
@@ -18,11 +18,16 @@
 .btn-right {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   background: white;
   //border-left: none;
 }
 
 .switcher-active {
   background: #abdaf5;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
 }

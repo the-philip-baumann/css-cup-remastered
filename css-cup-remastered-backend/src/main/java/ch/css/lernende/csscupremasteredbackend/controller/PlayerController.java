@@ -1,6 +1,5 @@
 package ch.css.lernende.csscupremasteredbackend.controller;
 
-import ch.css.lernende.csscupremasteredbackend.dto.PlayerDto;
 import ch.css.lernende.csscupremasteredbackend.exception.IllegalParameterException;
 import ch.css.lernende.csscupremasteredbackend.exception.NoResultsFoundException;
 import ch.css.lernende.csscupremasteredbackend.service.PlayerService;
@@ -41,15 +40,6 @@ public class PlayerController {
         }
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getSinglePlayer(@PathVariable Optional<Long> id) {
-        try {
-            return ResponseEntity.ok(playerService.getSinglePlayer(id));
-        } catch (IllegalParameterException | NoResultsFoundException e) {
-            return ResponseEntity.status(400).body("No Results found");
-        }
-    }
-
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deleteSinglePlayer(@PathVariable Optional<Long> id) {
         try {
@@ -59,15 +49,4 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User with id: " + id.get() + " could not be deleted.");
         }
     }
-
-    @PutMapping(path = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity editPlayer(@PathVariable Optional<Long> id, @RequestBody Optional<PlayerDto> playerDto) {
-        try {
-            playerService.editPlayer(id, playerDto);
-            return ResponseEntity.ok().build();
-        } catch (IllegalParameterException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
 }

@@ -1,18 +1,19 @@
 <main class="content">
   <div class="toolbox-container center-child">
     <app-discipline-switch-button (emitter)="switchDiscipline($event)"></app-discipline-switch-button>
-    <button type="button" class="btn btn-primary right-sided" (click)="redirectToCreateTeamView()">Team erstellen</button>
+    <button type="button" class="btn btn-primary right-sided" (click)="redirectToCreateTeamView()" *ngIf="!isPartOfATeam && authService.hasAuthority('ROLE_CAPTAIN')">Team erstellen</button>
   </div>
   <div class="teams">
-    <div class="team" *ngFor="let team of teams">
-      <div class="team-header">
+    <div class="team" *ngFor="let team of teams" >
+      <div class="team-header" [ngClass]="{'part-of-team': team.isUserPartOfTeam}">
         <h3 class="team-title">{{team.name}}</h3>
+        <h3 class="team-delete" (click)="deleteTeam(team)" *ngIf="authService.hasAuthority('ROLE_ADMIN')">X</h3>
       </div>
       <div class="team-body" *ngFor="let player of team.players">
         {{player.firstname}} {{player.lastname}} ({{player.function}})
       </div>
-      <div class="team-join" (click)="joinTeam(team)">
-        JOIN
+      <div class="team-join" (click)="joinTeam(team)" [ngClass]="{'part-of-team': team.isUserPartOfTeam}">
+        <p *ngIf="!isPartOfATeam && !authService.hasAuthority('ROLE_CAPTAIN')" (click)="joinTeam(team)">JOIN</p>
       </div>
     </div>
   </div>

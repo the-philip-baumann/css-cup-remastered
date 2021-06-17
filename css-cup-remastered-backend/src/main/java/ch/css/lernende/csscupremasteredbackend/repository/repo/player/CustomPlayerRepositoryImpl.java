@@ -49,9 +49,9 @@ public class CustomPlayerRepositoryImpl implements CustomPlayerRepository {
         PlayerEntity playerEntity = new PlayerEntity();
         playerEntity.setFirstname(userModel.getFirstname());
         playerEntity.setLastname(userModel.getLastname());
-        playerEntity.setFunction(userModel.getLastname());
+        playerEntity.setFunction(userModel.getFunction());
         playerEntity.setEmail(userModel.getEmail());
-        RoleEntity roleEntity = roleRepository.findByName(userModel.getRole()).orElseThrow(IllegalParameterException::new);
+        RoleEntity roleEntity = roleRepository.findByName("ROLE_" + userModel.getRole()).orElseThrow(IllegalParameterException::new);
         DisciplineEntity disciplineEntity = disciplineRepository.findByName(userModel.getDiscipline()).orElseThrow(IllegalParameterException::new);
         playerEntity.setPlayerRole(roleEntity);
         playerEntity.setPlayerDiscipline(disciplineEntity);

@@ -40,16 +40,13 @@ $menu-item: #e6e7e8;
     border-bottom-right-radius: 50px;
   }
 
-}
-
-
-@media screen and (min-width: 720px) {
-  .nav {
-    background-color: green;
+  .logo-size {
+    width: 150px;
+    height: 150px;
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 401px) {
   .nav {
     background-color: $light_grey;
     overflow: hidden;
@@ -84,16 +81,12 @@ $menu-item: #e6e7e8;
   }
 
   .logo-size {
-    height: 80px;
-    width: 80px;
+    height: 150px;
+    width: 150px;
     padding: 20px;
   }
 }
-
-@media screen and (min-width: 2000px) {
-  .nav {
-    background-color: aqua;
-  }
-
-
-}
+//
+//@media screen and (min-width: 1500px) {
+//
+//}

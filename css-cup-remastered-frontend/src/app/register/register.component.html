@@ -1,31 +1,35 @@
 <div class="col-md-6 offset-3">
-  <form>
+  <form [formGroup]="registerForm">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Vorname">
+      <input type="text" class="form-control" placeholder="Vorname" formControlName="firstname">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Nachname">
+      <input type="text" class="form-control" placeholder="Nachname" formControlName="lastname">
     </div>
     <div class="form-group">
-      <select class="form-control">
+      <input type="text" class="form-control" placeholder="Funktionskürzel" formControlName="func">
+    </div>
+    <div class="form-group">
+      <select class="form-control" formControlName="role">
+<!--       <option *ngFor="let o of options"></option>-->
         <option>Captain</option>
-        <option>Spieler</option>
+        <option>Participant</option>
       </select>
     </div>
     <div class="form-group content-centered">
-      <app-discipline-switch-button></app-discipline-switch-button>
+      <app-discipline-switch-button (emitter)="switchDiscipline($event)"></app-discipline-switch-button>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="email">
+      <input type="text" class="form-control" placeholder="email" formControlName="email">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="passwort">
+      <input type="text" class="form-control" placeholder="passwort" formControlName="password">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="passwort bestätigen">
+      <input type="text" class="form-control" placeholder="passwort bestätigen" formControlName="passwordConfirm">
     </div>
-    <div class="form-group content-centered">
-      <input type="button" class="btn btn-primary" (click)="register()" value="Registrieren">
-    </div>
+<!--    <div class="form-group content-centered">-->
+      <input type="button" (click)="register(registerForm)" class="btn btn-primary" value="Registrieren" [disabled]="!registerForm.valid">
+<!--    </div>-->
   </form>
 </div>

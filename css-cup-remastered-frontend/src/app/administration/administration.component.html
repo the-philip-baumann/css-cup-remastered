@@ -1,28 +1,27 @@
 <main class="content">
   <div class="search-bar">
-
-    <input type="text" class="search-bar">
-    <button type="button" class="search-button">Suchen</button>
+    <input type="text" class="search-bar" [(ngModel)]="needle">
+    <button type="button" class="search-button" (click)="search()"><p>Suchen</p></button>
   </div>
   <div class="participant-table">
     <div class="table-header">
       <div class="table-col-firstname coloring">
-        <h3>Vorname</h3>
+        <h3 class="title">Vorname</h3>
       </div>
       <div class="table-col-lastname coloring">
-        <h3>Nachname</h3>
+        <h3 class="title">Nachname</h3>
       </div>
       <div class="table-col-function coloring">
-        <h3>Funktion</h3>
+        <h3 class="title">Funktion</h3>
       </div>
       <div class="table-col-role coloring">
-        <h3>Rolle</h3>
+        <h3 class="title">Rolle</h3>
       </div>
       <div class="table-col-team coloring">
-        <h3>Team</h3>
+        <h3 class="title">Team</h3>
       </div>
       <div class="table-col-toolbar coloring">
-        <h3>Toolbar</h3>
+        <h3 class="title">Toolbar</h3>
       </div>
     </div>
     <div class="table-body" *ngFor="let player of players">
@@ -42,7 +41,6 @@
         {{player.team != null ? player.team.name : ''}}
       </div>
       <div class="table-col-toolbar boxing">
-        <i class="far fa-edit" (click)="edit()"></i>
         <i class="far fa-trash-alt" (click)="delete(player)"></i>
       </div>
     </div>

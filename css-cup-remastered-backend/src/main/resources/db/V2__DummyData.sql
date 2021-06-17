@@ -24,5 +24,9 @@ VALUES ('Philip', 'Baumann', 'IEL', 'philip.baumann@css.ch', '$2y$12$gLNICNJNji3
        ('Charles', 'Charlson', 'HF', 'charles.charlson@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC ', 1, 1, null, true),
        ('Dave', 'Davison', 'CH', 'dave.davison@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC ', 1, 1, null, true),
        ('Elen', 'Elch', 'HFE', 'elen.elch@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC ', 1, 1, null, true),
-       ('Franz', 'Ferguson', 'LKB', 'franz.ferguson@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC ', 1, 1, null, true)
+       ('Franz', 'Ferguson', 'LKB', 'franz.ferguson@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC ', 1, 1, null, true),
+       ('admin', 'admin', 'HOQ', 'admin@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC', 1, 1, null, true),
+       ('captain', 'captain', 'HOQ', 'captain@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC', 1, 2, null, true),
+       ('participant', 'participant', 'HOQ', 'participant@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC', 3, 1, null, true),
+       ('undecided', 'undecided', 'HOQ', 'undecided@css.ch', '$2y$12$gLNICNJNji3zqefTazxsmetWOB4brAMiQPv4YcGaf9LLng/fleSJC', 1, 4, null, true);
 

@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class AddTeamDtoToTeamModel {
     public static TeamModel map(AddTeamDto addTeamDto) {
         TeamModel teamModel = new TeamModel();
-        teamModel.setName(addTeamDto.getName());
+        teamModel.setName(addTeamDto.getTeamName());
         teamModel.setDiscipline(addTeamDto.getDiscipline());
 
         //TODO: implement set playsers
