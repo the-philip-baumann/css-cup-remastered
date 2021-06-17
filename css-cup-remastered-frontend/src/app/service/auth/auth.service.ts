@@ -41,12 +41,12 @@ export class AuthService {
   }
 
 
-  public async register(registerDto: RegisterDto): Promise<void> {
+  public async register(registerDto: RegisterDto): Promise<AuthState> {
     let authState;
     let response;
 
     try {
-      response = await this.http.post<LoginResponseDto>(environment.remote + "/auth/register", registerDto).toPromise();
+      response = await this.http.post<LoginResponseDto>(environment.remote + "auth/register", registerDto).toPromise();
       authState = AuthState.success(response.jwt)
     } catch (e) {
       authState = AuthState.failure(response.jwt)
@@ -67,12 +67,10 @@ export class AuthService {
       console.error(e)
     }
 
-    console.log(bearerToken)
 
     if (bearerToken) {
       const tokenContent = this.resolveJwtPayload(bearerToken)
 
-      console.log(tokenContent)
       return {
         token: bearerToken,
         verified: tokenContent.expiryDate * 1000 >= Date.now() + 5 * 1000,
@@ -103,7 +101,7 @@ export class AuthService {
     let jwt: JwtContentDto
     if (!this.user) {
       jwt = this.verifyAndReturnJwtContent()
-      if (jwt.verified) {
+      if (jwt && jwt.verified) {
         this.user = new PlayerCredentialsDto(jwt.role, jwt.id, jwt.firstname, jwt.lastname, jwt.email, jwt.function, jwt.discipline)
       } else {
         this.user = null
@@ -111,7 +109,6 @@ export class AuthService {
     }
 
     if (!this.user) {
-      console.log(authorities, Role.ROLE_UNDECIDED)
       return authorities.indexOf(Role.ROLE_UNDECIDED) != -1
     }
 
@@ -122,5 +119,13 @@ export class AuthService {
     window.localStorage.removeItem(environment.bearer_token)
     this.user = null
     location.reload()
+  }
+
+  getUser(): PlayerCredentialsDto {
+    if (!this.user) {
+      return this.verifyAndReturnJwtContent()
+    }
+
+    return this.user
   }
 }

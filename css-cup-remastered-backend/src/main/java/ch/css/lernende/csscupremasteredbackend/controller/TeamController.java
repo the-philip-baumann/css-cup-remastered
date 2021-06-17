@@ -57,11 +57,11 @@ public class TeamController {
         }
     }
 
-    @PostMapping(path = "/join/{id}")
-    public ResponseEntity joinTeam(@PathVariable Optional<Long> id) {
+    @PostMapping(path = "/{teamId}/join/{userId}")
+    public ResponseEntity joinTeam(@PathVariable Optional<Long> teamId, @PathVariable Optional<Long> userId) {
         try {
             // TODO: Implement proper user Id
-            teamService.joinTeam(9, id);
+            teamService.joinTeam(userId, teamId);
             return ResponseEntity.ok().build();
         } catch (IllegalParameterException e) {
             return ResponseEntity.status(500).body("IllegalParameterException");

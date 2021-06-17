@@ -11,18 +11,12 @@ import {PlayerCredentialsDto} from "./service/dto/player-credentials.dto";
 export class AppComponent implements OnInit{
   title = 'css-cup-remastered-frontend';
 
-  constructor(private authService: AuthService) {
+  constructor() {
 
   }
 
   async ngOnInit(): Promise<void> {
-    const tokenContent: JwtContentDto = await this.authService.verifyAndReturnJwtContent();
 
-    if (tokenContent) {
-      this.authService.user = this.authService.mapTokenContentToUser(tokenContent)
-    } else {
-      this.authService.user = new PlayerCredentialsDto('ROLE_UNDECIDED')
-    }
   }
 
 

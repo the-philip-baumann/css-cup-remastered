@@ -13,7 +13,7 @@
         {{player.firstname}} {{player.lastname}} ({{player.function}})
       </div>
       <div class="team-join" (click)="joinTeam(team)" [ngClass]="{'part-of-team': team.isUserPartOfTeam}">
-        <p *ngIf="!isPartOfATeam">JOIN</p>
+        <p *ngIf="!isPartOfATeam && !authService.hasAuthority('ROLE_CAPTAIN')" (click)="joinTeam(team)">JOIN</p>
       </div>
     </div>
   </div>

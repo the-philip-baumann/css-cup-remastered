@@ -94,11 +94,12 @@ public class TeamService {
         teamRepository.deleteById(id.get());
     }
 
-    public void joinTeam(long userId, Optional<Long> id) throws IllegalParameterException {
+    public void joinTeam(Optional<Long> teamId, Optional<Long> userId) throws IllegalParameterException {
 
-        long teamId = id.orElseThrow(IllegalParameterException::new);
+        long tId = teamId.orElseThrow(IllegalParameterException::new);
+        long uid = userId.orElseThrow(IllegalParameterException::new);
 
-        this.teamRepository.addPlayerToTeam(userId, teamId);
+        this.teamRepository.addPlayerToTeam(tId, uid);
 
     }
 }

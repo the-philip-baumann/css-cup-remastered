@@ -5,4 +5,5 @@ export interface RegisterDto {
   function: string
   password: string
   discipline: string
+  role: string
 }

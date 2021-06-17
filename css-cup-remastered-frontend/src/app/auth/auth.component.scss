@@ -1,6 +1,6 @@
 $login-blue: rgb(46, 129, 252);
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1000px) {
   .login {
     background-color: #f2f1ed;
     border-radius: 50px;
@@ -16,7 +16,7 @@ $login-blue: rgb(46, 129, 252);
 
   .credentials {
     padding: 25% 10% 25% 10%;
-    display: inline-block;
+    display: block;
   }
 
   .input {
@@ -24,13 +24,23 @@ $login-blue: rgb(46, 129, 252);
     border-radius: 10px;
     border: none;
     display: block;
-    width: 280px;
+    width: 100%;
     margin-bottom: 30px;
+  }
+
+  .btn-register {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
   }
 
 }
 
-@media screen and (min-width: 401px) {
+@media screen and (min-width: 1001px) {
   .content {
     width: 80%;
     margin-left: 10%;
@@ -39,13 +49,14 @@ $login-blue: rgb(46, 129, 252);
   }
 
   .credentials {
-    padding: 25% 10% 25% 10%;
+    padding: 20% 10% 20% 10%;
     display: inline-block;
   }
 
   .register {
     width: 50%;
     color: white;
+    height: 100%;
   }
 
   .login {
@@ -71,17 +82,19 @@ $login-blue: rgb(46, 129, 252);
     margin-bottom: 30px;
   }
 
+  .btn-register {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
 }
 
-.btn-register {
-  width: 200px;
-  height: 50px;
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 20px;
-}
+
 
 .welcome-text {
   margin: 25px 25px 50px 0px;

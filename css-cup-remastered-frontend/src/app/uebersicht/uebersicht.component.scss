@@ -44,8 +44,8 @@ h3 {
 
   text-align: center;
   background-color: deepskyblue;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px;
   margin-bottom: 10%;
@@ -94,7 +94,7 @@ div.part-of-team {
 
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 401px) {
 
   .team {
     width: 30%;
@@ -125,6 +125,6 @@ div.part-of-team {
   text-align: center;
 }
 
-@media screen and (min-width: 2000px){
-
+p {
+  margin: 0;
 }

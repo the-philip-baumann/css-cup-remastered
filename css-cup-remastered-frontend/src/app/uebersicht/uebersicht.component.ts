@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {TeamDto} from "../service/dto/team.dto";
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth/auth.service";
+import {PlayerCredentialsDto} from "../service/dto/player-credentials.dto";
 
 @Component({
   selector: 'app-uebersicht',
@@ -26,11 +27,15 @@ export class UebersichtComponent implements OnInit {
   }
 
   async fetchAllTeams(isFootballCurrentDiscipline: boolean): Promise<void> {
-    this.teamsVolleyball = []
-    this.teamsFootball = []
+
+    this.teams = []
     this.isPartOfATeam = false;
-    let teams = await this.http.get<TeamDto[]>(environment.remote + 'team/all').toPromise()
-    teams.filter(team => {
+    let tempTeams = await this.http.get<TeamDto[]>(environment.remote + 'team/all').toPromise()
+    console.log(tempTeams)
+    this.teamsFootball = []
+    this.teamsVolleyball = []
+
+    tempTeams.filter(team => {
 
       team.players.filter(player => {
         if (player.id == this.authService.user.id) {
@@ -66,13 +71,17 @@ export class UebersichtComponent implements OnInit {
   }
 
   async joinTeam(team: TeamDto): Promise<void> {
-    console.log(team.id)
-    await this.http.post(environment.remote + 'team/join/' + team.id, {}).toPromise()
+    let user: PlayerCredentialsDto = this.authService.getUser()
+    await this.http.post(environment.remote + 'team/' + team.id + '/join/' + user.id, {}).toPromise()
     await this.fetchAllTeams(true);
   }
 
   async deleteTeam(team: TeamDto): Promise<void> {
     await this.http.delete(environment.remote + 'team/delete/' + team.id, {}).toPromise();
-    await this.fetchAllTeams(true);
+    let index = this.teams.indexOf(team);
+    if (index != -1) {
+      this.teams.slice(index, 1)
+      await this.fetchAllTeams(true);
+    }
   }
 }

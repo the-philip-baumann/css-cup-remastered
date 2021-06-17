@@ -22,6 +22,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   async fetchAllPlayers(): Promise<void> {
+
     this.backup = await this.http.get<PlayerDto[]>(environment.remote + "player/all").toPromise()
     this.backup.forEach(player => {
       console.log(player)
