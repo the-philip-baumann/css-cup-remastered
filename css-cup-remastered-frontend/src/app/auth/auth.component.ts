@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     ok: false,
     message: 'Invalid Credentials'
   }
-  private displayLoginFailed: boolean;
+  displayLoginFailed: boolean;
 
   constructor(private router: Router, private authService: AuthService) { }
 
