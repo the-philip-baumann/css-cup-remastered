@@ -1,6 +1,9 @@
 <main class="content col-md-6 offset-3">
   <div class="alert alert-danger" *ngIf="displayError">
-    Teamname muss zwischen 4 und 15 Buchstaben sein.
+    Teamname muss zwischen 4 und 15 Buchstaben sein und darf nicht mehr als 10 Spieler beinhalten.
+  </div>
+  <div class="alert alert-danger" *ngIf="displayResponseError">
+    Der gewählte Teamname ist bereits vergeben
   </div>
 
   <form class="create-team">
@@ -8,7 +11,7 @@
       <h1>{{teamView.teamName}}</h1>
     </div>
     <div class="form-group centered">
-     <app-discipline-switch-button></app-discipline-switch-button>
+     <app-discipline-switch-button (emitter)="switchDiscipline($event)"></app-discipline-switch-button>
     </div>
     <div class="form-group">
       <label for="teamname"></label>
@@ -29,7 +32,7 @@
       </div>
     </div>
     <div class="players-container">
-      <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFrocmTeam(player)">
+      <div class="item" *ngFor="let player of teamView.playerTeam" (click)="removePlayerFromTeam(player)">
         {{player.firstname}} {{player.lastname}} {{player.function}} &#10004;
       </div>
     </div>

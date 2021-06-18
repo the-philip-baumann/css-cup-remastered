@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {PlayerDto} from "../service/dto/player.dto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-administration',
@@ -15,7 +16,8 @@ export class AdministrationComponent implements OnInit {
   backup: PlayerDto[]
   needle: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   async ngOnInit(): Promise<void> {
     await this.fetchAllPlayers()
@@ -34,8 +36,12 @@ export class AdministrationComponent implements OnInit {
 
   async delete(player: PlayerDto): Promise<void> {
     console.log(player.id)
-    await this.http.delete(environment.remote + "player/" + player.id).toPromise()
-    await this.fetchAllPlayers()
+    await this.http.delete(environment.remote + "player/" + player.id, {}).toPromise()
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    await this.router.navigate([currentUrl]);
+
   }
 
   search() {

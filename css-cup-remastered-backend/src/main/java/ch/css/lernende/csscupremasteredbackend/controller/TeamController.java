@@ -42,7 +42,7 @@ public class TeamController {
         try {
             teamService.addTeam(addTeamDto);
             return ResponseEntity.ok().build();
-        } catch (IllegalParameterException | SQLException e) {
+        } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }
     }
@@ -51,7 +51,7 @@ public class TeamController {
     public ResponseEntity deleteTeam(@PathVariable Optional<Long> id) {
         try {
             teamService.deleteTeam(id);
-            return ResponseEntity.ok("Team was deleted");
+            return ResponseEntity.ok().build();
         } catch (IllegalParameterException e) {
             return ResponseEntity.status(400).body("Bad Request");
         }

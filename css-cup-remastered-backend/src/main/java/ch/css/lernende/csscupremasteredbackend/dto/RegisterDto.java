@@ -27,7 +27,7 @@ public class RegisterDto implements Serializable {
     private String lastname;
 
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 5, max = 30)
     @Email
     private String email;
 

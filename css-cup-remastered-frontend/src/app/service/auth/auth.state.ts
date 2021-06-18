@@ -14,7 +14,7 @@ export class AuthState {
     return new AuthState(true, jwt)
   }
 
-  public static failure(error: string): AuthState {
+  public static failure(error?: string): AuthState {
     return new AuthState(false, null, error)
   }
 

@@ -1,13 +1,13 @@
 <div class="col-md-6 offset-3">
   <form [formGroup]="registerForm">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Vorname" formControlName="firstname">
+      <input type="text" class="form-control" placeholder="Vorname (2-30) Charakter" formControlName="firstname">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Nachname" formControlName="lastname">
+      <input type="text" class="form-control" placeholder="Nachname (2-30) Charakter" formControlName="lastname">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Funktionskürzel" formControlName="func">
+      <input type="text" class="form-control" placeholder="Funktionskürzel (5-30) Charakter" formControlName="func">
     </div>
     <div class="form-group">
       <select class="form-control" formControlName="role">
@@ -20,16 +20,19 @@
       <app-discipline-switch-button (emitter)="switchDiscipline($event)"></app-discipline-switch-button>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="email" formControlName="email">
+      <input type="text" class="form-control" placeholder="email (5-30) Charakter" formControlName="email">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="passwort" formControlName="password">
+      <input type="password" class="form-control" placeholder="passwort (5-30) Charakter" formControlName="password">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="passwort bestätigen" formControlName="passwordConfirm">
+      <input type="password" class="form-control" placeholder="passwort bestätigen" formControlName="passwordConfirm">
     </div>
 <!--    <div class="form-group content-centered">-->
       <input type="button" (click)="register(registerForm)" class="btn btn-primary" value="Registrieren" [disabled]="!registerForm.valid">
 <!--    </div>-->
   </form>
+  <div class="alert alert-danger margin-top" *ngIf="displayError">
+    Email ist bereits vergeben. Kontaktieren Sie die Turnierverantwortlichen bei Fragen.
+  </div>
 </div>
