@@ -44,7 +44,7 @@ public class PlayerController {
     public ResponseEntity deleteSinglePlayer(@PathVariable Optional<Long> id) {
         try {
             playerService.deleteSinglePlayer(id);
-            return ResponseEntity.ok("User deleted");
+            return ResponseEntity.ok().build();
         } catch (IllegalParameterException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User with id: " + id.get() + " could not be deleted.");
         }

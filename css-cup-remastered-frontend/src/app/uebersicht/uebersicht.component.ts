@@ -83,5 +83,9 @@ export class UebersichtComponent implements OnInit {
       this.teams.slice(index, 1)
       await this.fetchAllTeams(true);
     }
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    await this.router.navigate([currentUrl]);
   }
 }

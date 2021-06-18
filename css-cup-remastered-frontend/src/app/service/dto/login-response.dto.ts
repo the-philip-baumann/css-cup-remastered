@@ -1,3 +1,4 @@
 export interface LoginResponseDto {
-  jwt: string;
+  jwt: string
+  error: string
 }

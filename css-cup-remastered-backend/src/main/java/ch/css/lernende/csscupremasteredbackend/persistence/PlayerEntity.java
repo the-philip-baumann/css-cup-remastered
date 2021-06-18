@@ -31,7 +31,7 @@ public class PlayerEntity implements UserDetails, Serializable {
     @Column(name = "function", nullable = false)
     private String function;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     //TODO: remove nullable

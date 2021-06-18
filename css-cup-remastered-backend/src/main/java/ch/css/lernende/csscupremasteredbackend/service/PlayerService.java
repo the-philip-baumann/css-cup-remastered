@@ -32,27 +32,9 @@ public class PlayerService {
         return PlayerMapper.listPlayerEntityToPlayerTeamRoleDto(playerEntities);
     }
 
-    public PlayerDto getSinglePlayer(Optional<Long> id) throws NoResultsFoundException, IllegalParameterException {
-        long userId = id.orElseThrow(IllegalParameterException::new);
-        Optional<PlayerEntity> playerEntity = playerRepository.findById(userId);
-        if (playerEntity.isEmpty()) {
-            throw new NoResultsFoundException();
-        }
-
-        return PlayerMapper.userEntityToUserDto(playerEntity.get());
-    }
-
     public void deleteSinglePlayer(Optional<Long> id) throws IllegalParameterException {
         long userId = id.orElseThrow(IllegalParameterException::new);
         playerRepository.deleteById(userId);
-    }
-
-    public void editPlayer(Optional<Long> id, Optional<PlayerDto> playerDto) throws IllegalParameterException {
-        if (id.isEmpty() || playerDto.isEmpty()) {
-            throw new IllegalParameterException();
-        }
-
-        //TODO: Implement edit player
     }
 
     public List<PlayerDto> getAllPlayersWithoutTeam() {

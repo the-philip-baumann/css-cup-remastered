@@ -49,7 +49,7 @@ export class AuthService {
       response = await this.http.post<LoginResponseDto>(environment.remote + "auth/register", registerDto).toPromise();
       authState = AuthState.success(response.jwt)
     } catch (e) {
-      authState = AuthState.failure(response.jwt)
+      authState = AuthState.failure()
     }
 
     if (authState.ok) {

@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isFootball: boolean
   role: 'Captain'
+  errorMessage: 'Invalid Attempt To Register'
+  displayError: boolean
 
   options = [
     'Captain',
@@ -22,6 +24,7 @@ export class RegisterComponent implements OnInit {
   ]
 
   constructor(private authService: AuthService, private router: Router) {
+    this.displayError = false
     this.registerForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.minLength(1),
@@ -80,7 +83,11 @@ export class RegisterComponent implements OnInit {
 
       if (authState.ok) {
         await this.router.navigate([''])
+      } else {
+        this.displayError = true
       }
+    } else {
+      this.displayError = true
     }
 
 

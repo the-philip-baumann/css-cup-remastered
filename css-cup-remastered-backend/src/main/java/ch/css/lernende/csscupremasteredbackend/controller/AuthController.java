@@ -56,7 +56,7 @@ public class AuthController {
             String jwt = this.authService.register(RegisterDtoToUserModel.map(registerDto));
             return ResponseEntity.ok(new AuthStateDto(jwt, null));
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | IllegalParameterException | SQLException e) {
-            return ResponseEntity.status(500).body(new AuthStateDto(null, e.getMessage()));
+            return ResponseEntity.status(500).body(new AuthStateDto(null, "Invalid Attempt To Sign In"));
         }
     }
 

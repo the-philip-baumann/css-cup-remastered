@@ -19,6 +19,7 @@ export class AuthComponent implements OnInit {
     ok: false,
     message: 'Invalid Credentials'
   }
+  private displayLoginFailed: boolean;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -44,6 +45,8 @@ export class AuthComponent implements OnInit {
 
     if (state.ok) {
       await this.router.navigate([''])
+    } else {
+      this.displayLoginFailed = true
     }
 
   }
